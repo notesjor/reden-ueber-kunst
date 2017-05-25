@@ -1,6 +1,6 @@
-﻿namespace d14tive.WindowsClient.Pages.Abstract
+﻿namespace d14tive.WindowsClient.Controls
 {
-  partial class AbstractPage
+  partial class WebBrowserControl
   {
     /// <summary> 
     /// Erforderliche Designervariable.
@@ -28,17 +28,8 @@
     /// </summary>
     private void InitializeComponent()
     {
-      this.SuspendLayout();
-      // 
-      // AbstractPage
-      // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+      components = new System.ComponentModel.Container();
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.BackColor = System.Drawing.Color.White;
-      this.Name = "AbstractPage";
-      this.Size = new System.Drawing.Size(800, 600);
-      this.ResumeLayout(false);
-
     }
 
     #endregion

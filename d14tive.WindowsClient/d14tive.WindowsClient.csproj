@@ -64,6 +64,18 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Abstract\AbstractUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\Abstract\AbstractUserControl.Designer.cs">
+      <DependentUpon>AbstractUserControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\WebBrowserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\WebBrowserControl.Designer.cs">
+      <DependentUpon>WebBrowserControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Abstract\AbstractFillForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +94,9 @@
     <Compile Include="Forms\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\Abstract\AbstractUserControl.resx">
+      <DependentUpon>AbstractUserControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Abstract\AbstractForm.resx">
       <DependentUpon>AbstractForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -91,8 +106,14 @@
     <EmbeddedResource Include="Pages\Abstract\AbstractPage.resx">
       <DependentUpon>AbstractPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\TweetControl.resx">
+      <DependentUpon>TweetControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Img\PageImg.resx">
       <DependentUpon>PageImg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\Web\PageWeb.resx">
+      <DependentUpon>PageWeb.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Compile Include="MyConfiguration.cs" />
@@ -113,6 +134,12 @@
     </Compile>
     <Compile Include="Pages\App\CurrentTweets\CurrentTweetPage.Designer.cs">
       <DependentUpon>CurrentTweetPage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\TweetControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\TweetControl.Designer.cs">
+      <DependentUpon>TweetControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Pages\App\WordCloud\WordCloudPage.cs">
       <SubType>UserControl</SubType>

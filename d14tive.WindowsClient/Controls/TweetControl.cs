@@ -8,25 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using d14tive.WindowsClient.Controls.Abstract;
-using Telerik.WinControls;
 
-namespace d14tive.WindowsClient.Pages.Abstract
+namespace d14tive.WindowsClient.Pages.App.CurrentTweets
 {
-  public partial class AbstractPage : AbstractUserControl
+  public partial class TweetControl : AbstractUserControl
   {
-    public AbstractPage()
+    public TweetControl()
     {
       InitializeComponent();
-    }
-
-    public virtual void ShowPage()
-    {
-      // ignore
-    }
-
-    public virtual void HidePage()
-    {
-      // ignore
     }
   }
 }

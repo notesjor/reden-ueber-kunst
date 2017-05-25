@@ -28,10 +28,31 @@
     /// </summary>
     private void InitializeComponent()
     {
-      components = new System.ComponentModel.Container();
+      this.webBrowserControl1 = new d14tive.WindowsClient.Controls.WebBrowserControl();
+      this.SuspendLayout();
+      // 
+      // webBrowserControl1
+      // 
+      this.webBrowserControl1.BackColor = System.Drawing.Color.White;
+      this.webBrowserControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.webBrowserControl1.ForeColor = System.Drawing.Color.Black;
+      this.webBrowserControl1.Location = new System.Drawing.Point(0, 0);
+      this.webBrowserControl1.Name = "webBrowserControl1";
+      this.webBrowserControl1.Size = new System.Drawing.Size(800, 600);
+      this.webBrowserControl1.TabIndex = 0;
+      // 
+      // PageWeb
+      // 
+      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Controls.Add(this.webBrowserControl1);
+      this.Name = "PageWeb";
+      this.ResumeLayout(false);
+
     }
 
     #endregion
+
+    private Controls.WebBrowserControl webBrowserControl1;
   }
 }

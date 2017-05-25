@@ -1,6 +1,6 @@
-﻿namespace d14tive.WindowsClient.Pages.Abstract
+﻿namespace d14tive.WindowsClient.Controls.Abstract
 {
-  partial class AbstractPage
+  partial class AbstractUserControl
   {
     /// <summary> 
     /// Erforderliche Designervariable.
@@ -28,19 +28,22 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.materialTheme1 = new Telerik.WinControls.Themes.MaterialTheme();
       this.SuspendLayout();
       // 
-      // AbstractPage
+      // AbstractUserControl
       // 
-      this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
       this.BackColor = System.Drawing.Color.White;
-      this.Name = "AbstractPage";
+      this.ForeColor = System.Drawing.Color.Black;
+      this.Name = "AbstractUserControl";
       this.Size = new System.Drawing.Size(800, 600);
       this.ResumeLayout(false);
 
     }
 
     #endregion
+
+    private Telerik.WinControls.Themes.MaterialTheme materialTheme1;
   }
 }
