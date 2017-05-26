@@ -41,6 +41,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -70,6 +71,13 @@
     <Compile Include="Controls\Abstract\AbstractUserControl.Designer.cs">
       <DependentUpon>AbstractUserControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\CenterControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CenterControl.Designer.cs">
+      <DependentUpon>CenterControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Helper\UserControlDesigner.cs" />
     <Compile Include="Controls\WebBrowserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -97,6 +105,9 @@
     <EmbeddedResource Include="Controls\Abstract\AbstractUserControl.resx">
       <DependentUpon>AbstractUserControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CenterControl.resx">
+      <DependentUpon>CenterControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Abstract\AbstractForm.resx">
       <DependentUpon>AbstractForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\TweetControl.resx">
       <DependentUpon>TweetControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\App\CurrentTweets\CurrentTweetPage.resx">
+      <DependentUpon>CurrentTweetPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\App\WordCloud\WordCloudPage.resx">
+      <DependentUpon>WordCloudPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\Img\PageImg.resx">
       <DependentUpon>PageImg.cs</DependentUpon>
@@ -186,18 +203,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="wordcloud.page">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <!--sirinie -->
+    <None Include="Resources\Logo_Universitaet_928x268.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="teamdev.licenses" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\corpus_online.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

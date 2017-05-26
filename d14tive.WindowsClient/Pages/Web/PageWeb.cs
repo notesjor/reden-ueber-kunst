@@ -21,7 +21,7 @@ namespace d14tive.WindowsClient.Pages.Web
 
     public string Url { get; set; }
 
-    public override void ShowPage()
+    public override void ShowPage(Size size)
     {
       webBrowserControl1.LoadUrl(Url);
     }

@@ -17,5 +17,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
     {
       InitializeComponent();
     }
+
+    public override void ShowPage(Size size) { centerControl1.Adjust(size); }
   }
 }

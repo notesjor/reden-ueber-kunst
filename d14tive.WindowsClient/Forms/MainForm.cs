@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using d14tive.WindowsClient.Forms.Abstract;
 using d14tive.WindowsClient.Pages.Abstract;
+using d14tive.WindowsClient.Pages.App.CurrentTweets;
+using d14tive.WindowsClient.Pages.App.WordCloud;
 using d14tive.WindowsClient.Pages.Img;
 using d14tive.WindowsClient.Pages.Web;
 using Telerik.WinControls;
@@ -41,19 +43,25 @@ namespace d14tive.WindowsClient.Forms
 
       _random = new Random(DateTime.Today.Year + DateTime.Today.Month + DateTime.Today.Day);
       _appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+      ResumeLayout(false);
 
+      Load += MainForm_Load;   
+    }
+
+    private void MainForm_Load(object sender, EventArgs e)
+    {
       LoadPagesApp();
       LoadPagesWeb();
       LoadPagesPic();
 
       timer_pages_Tick(null, null);
       timer_pages.Start();
-      ResumeLayout(false);
     }
 
     private void LoadPagesApp()
     {
-
+      AddPage(new WordCloudPage(_appDir));
+      AddPage(new CurrentTweetPage());
     }
 
     private void LoadPagesWeb()
@@ -113,7 +121,7 @@ namespace d14tive.WindowsClient.Forms
         if (radPageView1.SelectedPage != null && radPageView1.SelectedPage.Controls.Count == 1)
           ((AbstractPage)_pages[next].Controls[0]).HidePage();
 
-        ((AbstractPage)_pages[next].Controls[0]).ShowPage();
+        ((AbstractPage)_pages[next].Controls[0]).ShowPage(radPageView1.Size);
         radPageView1.SelectedPage = _pages[next];
         _pages.RemoveAt(next);
       }

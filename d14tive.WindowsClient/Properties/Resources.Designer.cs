@@ -63,9 +63,9 @@ namespace d14tive.WindowsClient.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap corpus_online {
+        internal static System.Drawing.Bitmap Logo_Universitaet_928x268 {
             get {
-                object obj = ResourceManager.GetObject("corpus_online", resourceCulture);
+                object obj = ResourceManager.GetObject("Logo_Universitaet_928x268", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

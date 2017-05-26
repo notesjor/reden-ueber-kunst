@@ -19,7 +19,7 @@ namespace d14tive.WindowsClient.Pages.Abstract
       InitializeComponent();
     }
 
-    public virtual void ShowPage()
+    public virtual void ShowPage(Size size)
     {
       // ignore
     }
