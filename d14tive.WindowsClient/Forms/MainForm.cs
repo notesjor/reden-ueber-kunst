@@ -45,7 +45,7 @@ namespace d14tive.WindowsClient.Forms
       _appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
       ResumeLayout(false);
 
-      Load += MainForm_Load;   
+      Load += MainForm_Load;
     }
 
     private void MainForm_Load(object sender, EventArgs e)
@@ -67,9 +67,10 @@ namespace d14tive.WindowsClient.Forms
     private void LoadPagesWeb()
     {
       var htmls = Directory.GetFiles(_appDir, "*.html");
+
       foreach (var html in htmls)
       {
-        AddPage(new PageWeb { Url = html });
+        AddPage(new PageWeb { Url = html, Timer = GetTimer(html + "_.timer") });
       }
     }
 
@@ -83,9 +84,15 @@ namespace d14tive.WindowsClient.Forms
       foreach (var dir in dirs)
       {
         var images = Directory.GetFiles(dir, "*.png").OrderBy(x => x).Select(Image.FromFile).ToArray();
+
         if (images.Length > 0)
-          AddPage(new PageImg { Images = images });
+          AddPage(new PageImg { Images = images, Timer = GetTimer(Path.Combine(dir, "_.timer")) });
       }
+    }
+
+    private int[] GetTimer(string path)
+    {
+      return File.Exists(path) ? File.ReadAllLines(path).Select(x => int.Parse(x) * 1000).ToArray() : null;
     }
 
     private void AddPage(AbstractPage page)
@@ -121,7 +128,13 @@ namespace d14tive.WindowsClient.Forms
         if (radPageView1.SelectedPage != null && radPageView1.SelectedPage.Controls.Count == 1)
           ((AbstractPage)_pages[next].Controls[0]).HidePage();
 
-        ((AbstractPage)_pages[next].Controls[0]).ShowPage(radPageView1.Size);
+        var page = _pages[next].Controls[0] as AbstractPage;
+        if (page == null)
+          throw new Exception();
+
+        page.ShowPage(radPageView1.Size);
+        timer_pages.Interval = page.Timer?[0] ?? MyConfiguration.PageTimeout;
+
         radPageView1.SelectedPage = _pages[next];
         _pages.RemoveAt(next);
       }

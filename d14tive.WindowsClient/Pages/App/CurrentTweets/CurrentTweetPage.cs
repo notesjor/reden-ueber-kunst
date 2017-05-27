@@ -18,6 +18,15 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       InitializeComponent();
     }
 
-    public override void ShowPage(Size size) { centerControl1.Adjust(size); }
+    public override void ShowPage(Size size)
+    {
+      centerControl1.Adjust(size);
+      backgroundWorker1.RunWorkerAsync();
+    }
+
+    private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+    {
+
+    }
   }
 }

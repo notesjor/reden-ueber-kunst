@@ -29,7 +29,7 @@ namespace d14tive.WindowsClient.Pages.Img
       if (Images.Length == 1)
         return;
 
-      timer_images.Interval = MyConfiguration.PageTimeout / Images.Length;
+      timer_images.Interval = Timer?[1] ?? MyConfiguration.PageTimeout / Images.Length;
       timer_images.Start();
     }
 

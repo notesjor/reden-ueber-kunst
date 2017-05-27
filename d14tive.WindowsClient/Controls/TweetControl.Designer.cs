@@ -30,25 +30,28 @@
     {
       this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
       this.panel1 = new System.Windows.Forms.Panel();
-      this.img_user = new System.Windows.Forms.PictureBox();
-      this.panel2 = new System.Windows.Forms.Panel();
       this.panel3 = new System.Windows.Forms.Panel();
-      this.txt_userDisplayname = new Telerik.WinControls.UI.RadLabel();
-      this.txt_userAccountname = new Telerik.WinControls.UI.RadLabel();
       this.txt_statistics = new Telerik.WinControls.UI.RadLabel();
+      this.panel2 = new System.Windows.Forms.Panel();
+      this.txt_userAccountname = new Telerik.WinControls.UI.RadLabel();
+      this.txt_userDisplayname = new Telerik.WinControls.UI.RadLabel();
+      this.img_user = new System.Windows.Forms.PictureBox();
+      this.txt_content = new Telerik.WinControls.UI.RadLabel();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       this.radPanel1.SuspendLayout();
       this.panel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.img_user)).BeginInit();
-      this.panel2.SuspendLayout();
       this.panel3.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_userDisplayname)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_userAccountname)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.txt_statistics)).BeginInit();
+      this.panel2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_userAccountname)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_userDisplayname)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.img_user)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_content)).BeginInit();
       this.SuspendLayout();
       // 
       // radPanel1
       // 
+      this.radPanel1.Controls.Add(this.txt_content);
       this.radPanel1.Controls.Add(this.panel1);
       this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radPanel1.Location = new System.Drawing.Point(5, 5);
@@ -67,25 +70,6 @@
       this.panel1.Size = new System.Drawing.Size(790, 48);
       this.panel1.TabIndex = 0;
       // 
-      // img_user
-      // 
-      this.img_user.Dock = System.Windows.Forms.DockStyle.Left;
-      this.img_user.Location = new System.Drawing.Point(0, 0);
-      this.img_user.Name = "img_user";
-      this.img_user.Size = new System.Drawing.Size(48, 48);
-      this.img_user.TabIndex = 0;
-      this.img_user.TabStop = false;
-      // 
-      // panel2
-      // 
-      this.panel2.Controls.Add(this.txt_userAccountname);
-      this.panel2.Controls.Add(this.txt_userDisplayname);
-      this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-      this.panel2.Location = new System.Drawing.Point(48, 0);
-      this.panel2.Name = "panel2";
-      this.panel2.Size = new System.Drawing.Size(350, 48);
-      this.panel2.TabIndex = 1;
-      // 
       // panel3
       // 
       this.panel3.Controls.Add(this.txt_statistics);
@@ -94,30 +78,6 @@
       this.panel3.Name = "panel3";
       this.panel3.Size = new System.Drawing.Size(350, 48);
       this.panel3.TabIndex = 2;
-      // 
-      // txt_userDisplayname
-      // 
-      this.txt_userDisplayname.Dock = System.Windows.Forms.DockStyle.Top;
-      this.txt_userDisplayname.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
-      this.txt_userDisplayname.ForeColor = System.Drawing.Color.Black;
-      this.txt_userDisplayname.Location = new System.Drawing.Point(0, 0);
-      this.txt_userDisplayname.Name = "txt_userDisplayname";
-      this.txt_userDisplayname.Size = new System.Drawing.Size(86, 22);
-      this.txt_userDisplayname.TabIndex = 0;
-      this.txt_userDisplayname.Text = "radLabel1";
-      this.txt_userDisplayname.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-      // 
-      // txt_userAccountname
-      // 
-      this.txt_userAccountname.Dock = System.Windows.Forms.DockStyle.Top;
-      this.txt_userAccountname.Font = new System.Drawing.Font("Arial", 10.5F);
-      this.txt_userAccountname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
-      this.txt_userAccountname.Location = new System.Drawing.Point(0, 22);
-      this.txt_userAccountname.Name = "txt_userAccountname";
-      this.txt_userAccountname.Size = new System.Drawing.Size(71, 19);
-      this.txt_userAccountname.TabIndex = 1;
-      this.txt_userAccountname.Text = "radLabel2";
-      this.txt_userAccountname.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // txt_statistics
       // 
@@ -132,6 +92,63 @@
       this.txt_statistics.Text = "radLabel3";
       this.txt_statistics.TextAlignment = System.Drawing.ContentAlignment.TopRight;
       // 
+      // panel2
+      // 
+      this.panel2.Controls.Add(this.txt_userAccountname);
+      this.panel2.Controls.Add(this.txt_userDisplayname);
+      this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+      this.panel2.Location = new System.Drawing.Point(48, 0);
+      this.panel2.Name = "panel2";
+      this.panel2.Size = new System.Drawing.Size(350, 48);
+      this.panel2.TabIndex = 1;
+      // 
+      // txt_userAccountname
+      // 
+      this.txt_userAccountname.Dock = System.Windows.Forms.DockStyle.Top;
+      this.txt_userAccountname.Font = new System.Drawing.Font("Arial", 10.5F);
+      this.txt_userAccountname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(77)))));
+      this.txt_userAccountname.Location = new System.Drawing.Point(0, 22);
+      this.txt_userAccountname.Name = "txt_userAccountname";
+      this.txt_userAccountname.Size = new System.Drawing.Size(350, 19);
+      this.txt_userAccountname.TabIndex = 1;
+      this.txt_userAccountname.Text = "radLabel2";
+      this.txt_userAccountname.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // txt_userDisplayname
+      // 
+      this.txt_userDisplayname.Dock = System.Windows.Forms.DockStyle.Top;
+      this.txt_userDisplayname.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
+      this.txt_userDisplayname.ForeColor = System.Drawing.Color.Black;
+      this.txt_userDisplayname.Location = new System.Drawing.Point(0, 0);
+      this.txt_userDisplayname.Name = "txt_userDisplayname";
+      this.txt_userDisplayname.Size = new System.Drawing.Size(350, 22);
+      this.txt_userDisplayname.TabIndex = 0;
+      this.txt_userDisplayname.Text = "radLabel1";
+      this.txt_userDisplayname.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
+      // img_user
+      // 
+      this.img_user.Dock = System.Windows.Forms.DockStyle.Left;
+      this.img_user.Location = new System.Drawing.Point(0, 0);
+      this.img_user.Name = "img_user";
+      this.img_user.Size = new System.Drawing.Size(48, 48);
+      this.img_user.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+      this.img_user.TabIndex = 0;
+      this.img_user.TabStop = false;
+      // 
+      // txt_content
+      // 
+      this.txt_content.AutoSize = false;
+      this.txt_content.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.txt_content.Font = new System.Drawing.Font("Arial", 16F);
+      this.txt_content.Location = new System.Drawing.Point(0, 48);
+      this.txt_content.Name = "txt_content";
+      this.txt_content.Padding = new System.Windows.Forms.Padding(5);
+      this.txt_content.Size = new System.Drawing.Size(790, 142);
+      this.txt_content.TabIndex = 1;
+      this.txt_content.Text = "radLabel1";
+      this.txt_content.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+      // 
       // TweetControl
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -144,13 +161,14 @@
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       this.radPanel1.ResumeLayout(false);
       this.panel1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.img_user)).EndInit();
+      this.panel3.ResumeLayout(false);
+      ((System.ComponentModel.ISupportInitialize)(this.txt_statistics)).EndInit();
       this.panel2.ResumeLayout(false);
       this.panel2.PerformLayout();
-      this.panel3.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.txt_userDisplayname)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.txt_userAccountname)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_statistics)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_userDisplayname)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.img_user)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.txt_content)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -165,5 +183,6 @@
     private Telerik.WinControls.UI.RadLabel txt_userAccountname;
     private Telerik.WinControls.UI.RadLabel txt_userDisplayname;
     private System.Windows.Forms.PictureBox img_user;
+    private Telerik.WinControls.UI.RadLabel txt_content;
   }
 }
