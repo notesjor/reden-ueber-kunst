@@ -52,7 +52,7 @@ namespace d14tive.WindowsClient.Forms
     {
       LoadPagesApp();
       LoadPagesWeb();
-      LoadPagesPic();
+      //LoadPagesPic();
 
       timer_pages_Tick(null, null);
       timer_pages.Start();
@@ -133,13 +133,17 @@ namespace d14tive.WindowsClient.Forms
           throw new Exception();
 
         page.ShowPage(radPageView1.Size);
+
+        timer_pages.Stop();
         timer_pages.Interval = page.Timer?[0] ?? MyConfiguration.PageTimeout;
+        timer_pages.Start();
 
         radPageView1.SelectedPage = _pages[next];
         _pages.RemoveAt(next);
       }
       catch (Exception ex)
       {
+        timer_pages.Start();
         // ignore
       }
     }
