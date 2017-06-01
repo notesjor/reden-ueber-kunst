@@ -62,8 +62,10 @@ namespace d14tive.WindowsClient.Forms
     private void LoadPagesApp()
     {
       AddPage(new CorpusDistributionPage());
-      AddPage(new WordCloudPage(_appDir));
-      AddPage(new CurrentTweetPage());
+      if (File.Exists(@"wordcloud.page"))
+        AddPage(new WordCloudPage(_appDir));
+      if (File.Exists(@"tweets.cec6"))
+        AddPage(new CurrentTweetPage());
     }
 
     private void LoadPagesWeb()
