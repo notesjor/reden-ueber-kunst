@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStream.Model;
 using CorpusExplorer.Sdk.Extern.Json.TwitterStream.Reader;
+using d14tive.WindowsClient.Controls;
 using d14tive.WindowsClient.Pages.App.CurrentTweets;
 using LinqToTwitter;
 using Newtonsoft.Json;
@@ -21,6 +22,7 @@ namespace d14tive.WindowsClient.Processor
     private readonly TweetControl _tcEn;
     private readonly TweetControl _tcDe;
     private readonly TweetControl _tcEl;
+    private int _index = -1;
 
     private static TwitterContext _context;
     private static string _query;
@@ -47,7 +49,7 @@ namespace d14tive.WindowsClient.Processor
 
     public async Task Run()
     {
-      var hashtags = new HashSet<string>{"#documenta14","#d14","#Documenta14","#DOCUMENTA14"};
+      var hashtags = new HashSet<string> { "#KasselDocumenta", "#documentaKassel", "#documenta2017", "#documenta14", "#d14", "#Documenta14", "#DOCUMENTA14", "#RedenUeberKunstD14" };
       _query = string.Join(",", hashtags);
       _context = new TwitterContext(new SingleUserAuthorizer { CredentialStore = GetCredential() });
       StreamTwitterContent();
@@ -76,26 +78,27 @@ namespace d14tive.WindowsClient.Processor
                 if (IsTweetAlreadyKnown(tweet.Text))
                   return;
 
-                switch (tweet.Lang) {
+                switch (tweet.Lang)
+                {
                   case "en":
-                    _tcEn.Invoke((MethodInvoker) delegate
-                    {
-                      SetTweetControl(_tcEn, tweet);
-                    });
+                    _tcEn.Invoke((MethodInvoker)delegate
+                   {
+                     SetTweetControl(_tcEn, tweet);
+                   });
                     break;
                   case "de":
-                    _tcDe.Invoke((MethodInvoker) delegate
-                    {
-                      SetTweetControl(_tcDe, tweet);
-                      _tcDe.Visible = true;
-                    });
+                    _tcDe.Invoke((MethodInvoker)delegate
+                   {
+                     SetTweetControl(_tcDe, tweet);
+                     _tcDe.Visible = true;
+                   });
                     break;
                   case "el":
-                    _tcEl.Invoke((MethodInvoker) delegate
-                    {
-                      SetTweetControl(_tcEl, tweet);
-                      _tcEl.Visible = true;
-                    });
+                    _tcEl.Invoke((MethodInvoker)delegate
+                   {
+                     SetTweetControl(_tcEl, tweet);
+                     _tcEl.Visible = true;
+                   });
                     break;
                 }
               }
@@ -137,7 +140,7 @@ namespace d14tive.WindowsClient.Processor
 
     private void SetTweetControl(TweetControl tc, StreamMessage tweet)
     {
-      tc.UserAccountname = "@"+tweet.User.ScreenName;
+      tc.UserAccountname = "@" + tweet.User.ScreenName;
       tc.UserDisplayname = tweet.User.Name;
       tc.Content = tweet.Text;
       tc.Statistics = $"{tweet.User.FollowersCount} Follower | {tweet.User.StatusesCount} Tweets";

@@ -46,7 +46,7 @@
       this.radPageView1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radPageView1.Location = new System.Drawing.Point(0, 0);
       this.radPageView1.Name = "radPageView1";
-      this.radPageView1.Size = new System.Drawing.Size(800, 514);
+      this.radPageView1.Size = new System.Drawing.Size(800, 540);
       this.radPageView1.TabIndex = 0;
       this.radPageView1.Text = "radPageView1";
       ((Telerik.WinControls.UI.RadPageViewStripElement)(this.radPageView1.GetChildAt(0))).BorderWidth = 0F;
@@ -65,20 +65,21 @@
       this.panel1.Controls.Add(this.radLabel1);
       this.panel1.Controls.Add(this.pictureBox1);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-      this.panel1.Location = new System.Drawing.Point(0, 514);
+      this.panel1.Location = new System.Drawing.Point(0, 540);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(800, 86);
+      this.panel1.Size = new System.Drawing.Size(800, 60);
       this.panel1.TabIndex = 1;
       // 
       // radLabel1
       // 
       this.radLabel1.AutoSize = false;
       this.radLabel1.Dock = System.Windows.Forms.DockStyle.Right;
-      this.radLabel1.Location = new System.Drawing.Point(356, 0);
+      this.radLabel1.Location = new System.Drawing.Point(396, 0);
       this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(444, 86);
+      this.radLabel1.Size = new System.Drawing.Size(404, 60);
       this.radLabel1.TabIndex = 1;
-      this.radLabel1.Text = "<html>Projekt „Reden über Kunst - d14\"<br />Institut für Germanistik</html>";
+      this.radLabel1.Text = "<html>Projekt „Reden über Kunst - d14\"<br />www.reden-ueber-kunst.de - #RedenUebe" +
+    "rKunstD14<br />Institut für Germanistik</html>";
       this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
       // 
       // pictureBox1
@@ -87,7 +88,7 @@
       this.pictureBox1.Image = global::d14tive.WindowsClient.Properties.Resources.Logo_Universitaet_928x268;
       this.pictureBox1.Location = new System.Drawing.Point(0, 0);
       this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(298, 86);
+      this.pictureBox1.Size = new System.Drawing.Size(257, 60);
       this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;

@@ -38,8 +38,8 @@ namespace d14tive.ExcelAnalytics
       var cluster_news = GetDateClusters(cec_news);
       var cluster_tweet = GetDateClusters(cec_tweet);
 
-      CalculateInfluence(cluster_news, cec_news.CorpusDisplayname);
-      CalculateInfluence(cluster_tweet, cec_tweet.CorpusDisplayname);
+      CalculateInfluence(cluster_news, cec_news.CorpusDisplayname, "Autor");
+      CalculateInfluence(cluster_tweet, cec_tweet.CorpusDisplayname, "Absender (Id)");
       Console.WriteLine("INFLUENCE DONE");
 
       CalculateCountry(cluster_tweet, cec_tweet.CorpusDisplayname);
@@ -93,7 +93,7 @@ namespace d14tive.ExcelAnalytics
       File.WriteAllText(corpus.CorpusDisplayname + "_basicStat.csv", stb.ToString());
     }
 
-    private static void CalculateInfluence(Selection[] clusters, string name)
+    private static void CalculateInfluence(Selection[] clusters, string name, string property)
     {
       var stb = new StringBuilder();
       var cnt = new Dictionary<string, double>();
@@ -106,9 +106,9 @@ namespace d14tive.ExcelAnalytics
         Dictionary<string, double[]> meta;
         try
         {
-          meta = block.GetAggregatedRelativeSize("Autor");
-          if (meta == null || meta.Count < 5)
-            meta = block.GetAggregatedRelativeSize("Absender (Id)");
+          meta = block.GetAggregatedRelativeSize(property);
+          if (meta == null || meta.Count < 1)
+            continue;
         }
         catch { continue; }
 

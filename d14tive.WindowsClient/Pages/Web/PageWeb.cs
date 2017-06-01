@@ -24,6 +24,7 @@ namespace d14tive.WindowsClient.Pages.Web
     public override void ShowPage(Size size)
     {
       webBrowserControl1.LoadUrl(Url);
+      lbl_info.Text = webBrowserControl1.Title;
     }
   }
 }

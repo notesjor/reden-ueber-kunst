@@ -1,4 +1,6 @@
-﻿namespace d14tive.WindowsClient.Pages.App.CurrentTweets
+﻿using d14tive.WindowsClient.Controls;
+
+namespace d14tive.WindowsClient.Pages.App.CurrentTweets
 {
   partial class CurrentTweetPage
   {
@@ -29,9 +31,10 @@
     private void InitializeComponent()
     {
       this.centerControl1 = new d14tive.WindowsClient.Controls.CenterControl();
-      this.tweetControl3 = new d14tive.WindowsClient.Pages.App.CurrentTweets.TweetControl();
-      this.tweetControl2 = new d14tive.WindowsClient.Pages.App.CurrentTweets.TweetControl();
-      this.tweetControl1 = new d14tive.WindowsClient.Pages.App.CurrentTweets.TweetControl();
+      this.tweetControl3 = new d14tive.WindowsClient.Controls.TweetControl();
+      this.tweetControl2 = new d14tive.WindowsClient.Controls.TweetControl();
+      this.tweetControl1 = new d14tive.WindowsClient.Controls.TweetControl();
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_info)).BeginInit();
       this.centerControl1.DropZone.SuspendLayout();
       this.centerControl1.SuspendLayout();
       this.SuspendLayout();
@@ -49,12 +52,12 @@
       this.centerControl1.DropZone.Dock = System.Windows.Forms.DockStyle.Fill;
       this.centerControl1.DropZone.Location = new System.Drawing.Point(5, 5);
       this.centerControl1.DropZone.Name = "DropZone";
-      this.centerControl1.DropZone.Size = new System.Drawing.Size(790, 590);
+      this.centerControl1.DropZone.Size = new System.Drawing.Size(790, 564);
       this.centerControl1.DropZone.TabIndex = 4;
       this.centerControl1.ForeColor = System.Drawing.Color.Black;
       this.centerControl1.Location = new System.Drawing.Point(0, 0);
       this.centerControl1.Name = "centerControl1";
-      this.centerControl1.Size = new System.Drawing.Size(800, 600);
+      this.centerControl1.Size = new System.Drawing.Size(800, 574);
       this.centerControl1.TabIndex = 0;
       // 
       // tweetControl3
@@ -94,8 +97,8 @@
       // tweetControl1
       // 
       this.tweetControl1.BackColor = System.Drawing.Color.White;
-      this.tweetControl1.Content = "Twittern Sie über die #documenta14 in #EN, #DE oder #EL. Hier sehen Sie die aktue" +
-    "llsten Live-Tweets ungefiltert.";
+      this.tweetControl1.Content = "Twittern Sie über #documenta14 in #EN, #DE oder #EL und werden Sie Teil der Analy" +
+    "se.";
       this.tweetControl1.Dock = System.Windows.Forms.DockStyle.Top;
       this.tweetControl1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.tweetControl1.ForeColor = System.Drawing.Color.Black;
@@ -105,8 +108,8 @@
       this.tweetControl1.Size = new System.Drawing.Size(790, 200);
       this.tweetControl1.Statistics = "";
       this.tweetControl1.TabIndex = 0;
-      this.tweetControl1.UserAccountname = "@notesjor";
-      this.tweetControl1.UserDisplayname = "Reden über Kunst";
+      this.tweetControl1.UserAccountname = "";
+      this.tweetControl1.UserDisplayname = "Twittern über Kunst";
       // 
       // CurrentTweetPage
       // 
@@ -114,6 +117,9 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.centerControl1);
       this.Name = "CurrentTweetPage";
+      this.Controls.SetChildIndex(this.lbl_info, 0);
+      this.Controls.SetChildIndex(this.centerControl1, 0);
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_info)).EndInit();
       this.centerControl1.DropZone.ResumeLayout(false);
       this.centerControl1.ResumeLayout(false);
       this.ResumeLayout(false);

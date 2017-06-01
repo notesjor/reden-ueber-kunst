@@ -43,6 +43,9 @@ namespace d14tive.WindowsClient.Controls
     {
       var html = File.ReadAllText(path, Encoding.UTF8);
       _webBrowser1.Browser.LoadHTML(html);
+      Title = _webBrowser1.Browser.Title;
     }
+
+    public string Title { get; private set; }
   }
 }

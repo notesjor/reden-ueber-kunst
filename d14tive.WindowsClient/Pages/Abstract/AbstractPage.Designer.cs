@@ -28,19 +28,34 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.lbl_info = new Telerik.WinControls.UI.RadLabel();
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_info)).BeginInit();
       this.SuspendLayout();
+      // 
+      // lbl_info
+      // 
+      this.lbl_info.AutoSize = false;
+      this.lbl_info.Dock = System.Windows.Forms.DockStyle.Bottom;
+      this.lbl_info.Location = new System.Drawing.Point(0, 574);
+      this.lbl_info.Name = "lbl_info";
+      this.lbl_info.Size = new System.Drawing.Size(800, 26);
+      this.lbl_info.TabIndex = 0;
+      this.lbl_info.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // AbstractPage
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.White;
+      this.Controls.Add(this.lbl_info);
       this.Name = "AbstractPage";
-      this.Size = new System.Drawing.Size(800, 600);
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_info)).EndInit();
       this.ResumeLayout(false);
 
     }
 
     #endregion
+
+    protected Telerik.WinControls.UI.RadLabel lbl_info;
   }
 }

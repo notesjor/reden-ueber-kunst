@@ -21,10 +21,11 @@ namespace d14tive.WindowsClient.Pages.Img
     }
 
     public Image[] Images { get; set; }
+    public string Label { get; set; } = "";
 
     public override void ShowPage(Size size)
     {
-      _index = 0;      
+      _index = 0;        
       pictureBox1.Image = Images[_index];
       if (Images.Length == 1)
         return;

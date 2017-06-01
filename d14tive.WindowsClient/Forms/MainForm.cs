@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using d14tive.WindowsClient.Forms.Abstract;
 using d14tive.WindowsClient.Pages.Abstract;
+using d14tive.WindowsClient.Pages.App.CorpusDistribution;
 using d14tive.WindowsClient.Pages.App.CurrentTweets;
 using d14tive.WindowsClient.Pages.App.WordCloud;
 using d14tive.WindowsClient.Pages.Img;
@@ -52,7 +53,7 @@ namespace d14tive.WindowsClient.Forms
     {
       LoadPagesApp();
       LoadPagesWeb();
-      //LoadPagesPic();
+      LoadPagesPic();
 
       timer_pages_Tick(null, null);
       timer_pages.Start();
@@ -60,6 +61,7 @@ namespace d14tive.WindowsClient.Forms
 
     private void LoadPagesApp()
     {
+      AddPage(new CorpusDistributionPage());
       AddPage(new WordCloudPage(_appDir));
       AddPage(new CurrentTweetPage());
     }
@@ -86,8 +88,13 @@ namespace d14tive.WindowsClient.Forms
         var images = Directory.GetFiles(dir, "*.png").OrderBy(x => x).Select(Image.FromFile).ToArray();
 
         if (images.Length > 0)
-          AddPage(new PageImg { Images = images, Timer = GetTimer(Path.Combine(dir, "_.timer")) });
+          AddPage(new PageImg { Images = images, Timer = GetTimer(Path.Combine(dir, "_.timer")), Label = GetLabel(Path.Combine(dir, "_.label")) });
       }
+    }
+
+    private string GetLabel(string path)
+    {
+      return File.Exists(path) ? File.ReadAllText(path) : string.Empty;
     }
 
     private int[] GetTimer(string path)

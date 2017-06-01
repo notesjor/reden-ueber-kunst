@@ -22,6 +22,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       InitializeComponent();
       _processor = new TwitterProcessor(tweetControl1, tweetControl2, tweetControl3);
       _task = _processor.Run();
+      lbl_info.Text = "Live-Tweets zur #documenta14";
     }
 
     public override void ShowPage(Size size)

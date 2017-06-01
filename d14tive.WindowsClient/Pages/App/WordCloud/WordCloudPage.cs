@@ -21,6 +21,7 @@ namespace d14tive.WindowsClient.Pages.App.WordCloud
     {
       InitializeComponent();
       _appDir = appDir;
+      lbl_info.Text = "Kookkurrenzen zu Athen, Kassel, documenta und Szymczyk im Gesamtkorpus";
     }
 
     public override void ShowPage(Size size)

@@ -1,4 +1,4 @@
-﻿namespace d14tive.WindowsClient.Pages.App.CurrentTweets
+﻿namespace d14tive.WindowsClient.Controls
 {
   partial class TweetControl
   {

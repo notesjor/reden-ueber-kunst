@@ -31,6 +31,7 @@
       this.components = new System.ComponentModel.Container();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.timer_images = new System.Windows.Forms.Timer(this.components);
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_info)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.SuspendLayout();
       // 
@@ -39,7 +40,7 @@
       this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.pictureBox1.Location = new System.Drawing.Point(0, 0);
       this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(800, 600);
+      this.pictureBox1.Size = new System.Drawing.Size(800, 574);
       this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;
@@ -54,6 +55,9 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.pictureBox1);
       this.Name = "PageImg";
+      this.Controls.SetChildIndex(this.lbl_info, 0);
+      this.Controls.SetChildIndex(this.pictureBox1, 0);
+      ((System.ComponentModel.ISupportInitialize)(this.lbl_info)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       this.ResumeLayout(false);
 
