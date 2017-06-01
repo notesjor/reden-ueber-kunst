@@ -308,6 +308,10 @@
       <Project>{DD54A9B0-80A9-4DD6-83A6-65359086CE18}</Project>
       <Name>CorpusExplorer.Sdk.Extern.Json</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
+      <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
+      <Name>CorpusExplorer.Sdk</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Page Include="Controls\HeatMap\HeatMapView.xaml">

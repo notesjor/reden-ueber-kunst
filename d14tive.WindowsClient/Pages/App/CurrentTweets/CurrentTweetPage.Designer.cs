@@ -63,7 +63,6 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       // tweetControl3
       // 
       this.tweetControl3.BackColor = System.Drawing.Color.White;
-      this.tweetControl3.Content = "radLabel1";
       this.tweetControl3.Dock = System.Windows.Forms.DockStyle.Top;
       this.tweetControl3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.tweetControl3.ForeColor = System.Drawing.Color.Black;
@@ -79,7 +78,6 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       // tweetControl2
       // 
       this.tweetControl2.BackColor = System.Drawing.Color.White;
-      this.tweetControl2.Content = "radLabel1";
       this.tweetControl2.Dock = System.Windows.Forms.DockStyle.Top;
       this.tweetControl2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.tweetControl2.ForeColor = System.Drawing.Color.Black;
@@ -95,7 +93,6 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       // tweetControl1
       // 
       this.tweetControl1.BackColor = System.Drawing.Color.White;
-      this.tweetControl1.Content = "";
       this.tweetControl1.Dock = System.Windows.Forms.DockStyle.Top;
       this.tweetControl1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.tweetControl1.ForeColor = System.Drawing.Color.Black;
