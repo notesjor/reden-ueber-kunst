@@ -42,7 +42,7 @@ namespace d14tive.WindowsClient.Forms
 
       timer_pages.Interval = MyConfiguration.PageTimeout;
 
-      _random = new Random(DateTime.Today.Year + DateTime.Today.Month + DateTime.Today.Day);
+      _random = MyConfiguration.Random;
       _appDir = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
       ResumeLayout(false);
 

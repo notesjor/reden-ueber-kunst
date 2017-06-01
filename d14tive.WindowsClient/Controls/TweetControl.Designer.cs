@@ -29,16 +29,16 @@
     private void InitializeComponent()
     {
       this.radPanel1 = new Telerik.WinControls.UI.RadPanel();
-      this.txt_content = new Telerik.WinControls.UI.RadLabel();
       this.panel1 = new System.Windows.Forms.Panel();
       this.panel3 = new System.Windows.Forms.Panel();
       this.txt_statistics = new Telerik.WinControls.UI.RadLabel();
       this.panel2 = new System.Windows.Forms.Panel();
       this.txt_userAccountname = new Telerik.WinControls.UI.RadLabel();
       this.txt_userDisplayname = new Telerik.WinControls.UI.RadLabel();
+      this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
+      this.wpfTagger1 = new d14tive.WindowsClient.Controls.Tagger.WpfTagger();
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).BeginInit();
       this.radPanel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.txt_content)).BeginInit();
       this.panel1.SuspendLayout();
       this.panel3.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.txt_statistics)).BeginInit();
@@ -49,26 +49,13 @@
       // 
       // radPanel1
       // 
-      this.radPanel1.Controls.Add(this.txt_content);
+      this.radPanel1.Controls.Add(this.elementHost1);
       this.radPanel1.Controls.Add(this.panel1);
       this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radPanel1.Location = new System.Drawing.Point(5, 5);
       this.radPanel1.Name = "radPanel1";
       this.radPanel1.Size = new System.Drawing.Size(790, 190);
       this.radPanel1.TabIndex = 0;
-      // 
-      // txt_content
-      // 
-      this.txt_content.AutoSize = false;
-      this.txt_content.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.txt_content.Font = new System.Drawing.Font("Arial", 16F);
-      this.txt_content.Location = new System.Drawing.Point(0, 48);
-      this.txt_content.Name = "txt_content";
-      this.txt_content.Padding = new System.Windows.Forms.Padding(5);
-      this.txt_content.Size = new System.Drawing.Size(790, 142);
-      this.txt_content.TabIndex = 1;
-      this.txt_content.Text = "radLabel1";
-      this.txt_content.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
       // 
       // panel1
       // 
@@ -136,6 +123,16 @@
       this.txt_userDisplayname.Text = "radLabel1";
       this.txt_userDisplayname.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
       // 
+      // elementHost1
+      // 
+      this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.elementHost1.Location = new System.Drawing.Point(0, 48);
+      this.elementHost1.Name = "elementHost1";
+      this.elementHost1.Size = new System.Drawing.Size(790, 142);
+      this.elementHost1.TabIndex = 1;
+      this.elementHost1.Text = "elementHost1";
+      this.elementHost1.Child = this.wpfTagger1;
+      // 
       // TweetControl
       // 
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -147,7 +144,6 @@
       this.Size = new System.Drawing.Size(800, 200);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       this.radPanel1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.txt_content)).EndInit();
       this.panel1.ResumeLayout(false);
       this.panel3.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.txt_statistics)).EndInit();
@@ -168,6 +164,7 @@
     private System.Windows.Forms.Panel panel2;
     private Telerik.WinControls.UI.RadLabel txt_userAccountname;
     private Telerik.WinControls.UI.RadLabel txt_userDisplayname;
-    private Telerik.WinControls.UI.RadLabel txt_content;
+    private System.Windows.Forms.Integration.ElementHost elementHost1;
+    private Tagger.WpfTagger wpfTagger1;
   }
 }

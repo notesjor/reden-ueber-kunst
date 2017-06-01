@@ -59,32 +59,11 @@
     <Reference Include="DotNetBrowser.Chromium">
       <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\Extern\DotNetBrowser\DotNetBrowser.Chromium.dll</HintPath>
     </Reference>
-    <Reference Include="LinqToTwitter.AspNet, Version=3.2.0.30483, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\packages\linqtotwitter.4.1.0\lib\net45\LinqToTwitter.AspNet.dll</HintPath>
-    </Reference>
-    <Reference Include="LinqToTwitter.net, Version=4.0.0.0, Culture=neutral, PublicKeyToken=957107be965c25d9, processorArchitecture=MSIL">
-      <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\packages\linqtotwitter.4.1.0\lib\net45\LinqToTwitter.net.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
-    <Reference Include="System.Reactive.Core, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\packages\Rx-Core.2.2.5\lib\net45\System.Reactive.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Interfaces, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\packages\Rx-Interfaces.2.2.5\lib\net45\System.Reactive.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.Linq, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\packages\Rx-Linq.2.2.5\lib\net45\System.Reactive.Linq.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Reactive.PlatformServices, Version=2.2.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\packages\Rx-PlatformServices.2.2.5\lib\net45\System.Reactive.PlatformServices.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xaml" />
@@ -215,6 +194,9 @@
     <EmbeddedResource Include="Pages\App\CurrentTweets\CurrentTweetPage.resx">
       <DependentUpon>CurrentTweetPage.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pages\App\TweetTrader\TweetTrader.resx">
+      <DependentUpon>TweetTrader.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pages\App\WordCloud\WordCloudPage.resx">
       <DependentUpon>WordCloudPage.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,6 +229,12 @@
     <Compile Include="Controls\TweetControl.Designer.cs">
       <DependentUpon>TweetControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\App\TweetTrader\TweetTrader.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Pages\App\TweetTrader\TweetTrader.Designer.cs">
+      <DependentUpon>TweetTrader.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\App\WordCloud\WordCloudPage.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -277,7 +265,6 @@
     <Compile Include="Pages\Web\PageWeb.Designer.cs">
       <DependentUpon>PageWeb.cs</DependentUpon>
     </Compile>
-    <Compile Include="Processor\TwitterProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -293,7 +280,6 @@
     <None Include="Influence.csv">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

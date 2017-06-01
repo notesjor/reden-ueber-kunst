@@ -1,4 +1,5 @@
-﻿using d14tive.WindowsClient.Controls.Abstract;
+﻿using System.Collections.Generic;
+using d14tive.WindowsClient.Controls.Abstract;
 
 namespace d14tive.WindowsClient.Controls
 {
@@ -21,10 +22,9 @@ namespace d14tive.WindowsClient.Controls
       get => txt_userAccountname.Text;
     }
 
-    public string Content
+    public IEnumerable<IEnumerable<string>> Content
     {
-      set => txt_content.Text = value;
-      get => txt_content.Text;
+      set => wpfTagger1.Text = value;
     }
 
     public string Statistics

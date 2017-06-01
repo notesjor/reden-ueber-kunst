@@ -75,7 +75,6 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl3.TabIndex = 2;
       this.tweetControl3.UserAccountname = "radLabel2";
       this.tweetControl3.UserDisplayname = "radLabel1";
-      this.tweetControl3.Visible = false;
       // 
       // tweetControl2
       // 
@@ -92,13 +91,11 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl2.TabIndex = 1;
       this.tweetControl2.UserAccountname = "radLabel2";
       this.tweetControl2.UserDisplayname = "radLabel1";
-      this.tweetControl2.Visible = false;
       // 
       // tweetControl1
       // 
       this.tweetControl1.BackColor = System.Drawing.Color.White;
-      this.tweetControl1.Content = "Twittern Sie über #documenta14 in #EN, #DE oder #EL und werden Sie Teil der Analy" +
-    "se.";
+      this.tweetControl1.Content = "";
       this.tweetControl1.Dock = System.Windows.Forms.DockStyle.Top;
       this.tweetControl1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.tweetControl1.ForeColor = System.Drawing.Color.Black;
