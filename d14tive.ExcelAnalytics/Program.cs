@@ -31,9 +31,9 @@ namespace d14tive.ExcelAnalytics
       var cec_tweet = CorpusAdapterWriteDirect.Create(corpus_tweet);
       Console.WriteLine("CORPORA LOADED");
 
-      //CalculateBasicStatistics(cec_news);
-      //CalculateBasicStatistics(cec_tweet);
-      //Console.WriteLine("BASIC DONE");
+      CalculateBasicStatistics(cec_news);
+      CalculateBasicStatistics(cec_tweet);
+      Console.WriteLine("BASIC DONE");
 
       var cluster_news = GetDateClusters(cec_news);
       var cluster_tweet = GetDateClusters(cec_tweet);
