@@ -38,7 +38,7 @@ namespace d14tive.ExcelAnalytics
       var cluster_news = GetDateClusters(cec_news);
       var cluster_tweet = GetDateClusters(cec_tweet);
 
-      CalculateInfluence(cluster_news, cec_news.CorpusDisplayname, "Autor");
+      CalculateInfluence(cluster_news, cec_news.CorpusDisplayname, "Zeitung");
       CalculateInfluence(cluster_tweet, cec_tweet.CorpusDisplayname, "Absender (Id)");
       Console.WriteLine("INFLUENCE DONE");
 
