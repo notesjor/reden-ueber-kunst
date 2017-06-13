@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using d14tive.WindowsClient.Forms.Abstract;
 using d14tive.WindowsClient.Pages.Abstract;
-using d14tive.WindowsClient.Pages.App.CorpusDistribution;
 using d14tive.WindowsClient.Pages.App.CurrentTweets;
 using d14tive.WindowsClient.Pages.App.WordCloud;
 using d14tive.WindowsClient.Pages.Img;
@@ -61,11 +60,14 @@ namespace d14tive.WindowsClient.Forms
 
     private void LoadPagesApp()
     {
-      AddPage(new CorpusDistributionPage());
       if (File.Exists(@"wordcloud.page"))
         AddPage(new WordCloudPage(_appDir));
       if (File.Exists(@"tweets.cec6"))
+      {
         AddPage(new CurrentTweetPage());
+        AddPage(new CurrentTweetPage());
+        AddPage(new CurrentTweetPage());
+      }
     }
 
     private void LoadPagesWeb()
@@ -99,9 +101,19 @@ namespace d14tive.WindowsClient.Forms
       return File.Exists(path) ? File.ReadAllText(path) : string.Empty;
     }
 
-    private int[] GetTimer(string path)
+    private int GetTimer(string path)
     {
-      return File.Exists(path) ? File.ReadAllLines(path).Select(x => int.Parse(x) * 1000).ToArray() : null;
+      if (!File.Exists(path))
+        return MyConfiguration.PageTimeout;
+
+      try
+      {
+        return int.Parse(File.ReadAllLines(path).First()) * 1000;
+      }
+      catch
+      {
+        return MyConfiguration.PageTimeout;
+      }
     }
 
     private void AddPage(AbstractPage page)
@@ -144,7 +156,9 @@ namespace d14tive.WindowsClient.Forms
         page.ShowPage(radPageView1.Size);
 
         timer_pages.Stop();
-        timer_pages.Interval = page.Timer?[0] ?? MyConfiguration.PageTimeout;
+        // Wenn PageImg dann berechne den Timer aus Zeit-Einzelseite * Seiten
+        // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
+        timer_pages.Interval = (page as PageImg)?.Images.Length * page.Timer ?? page.Timer;
         timer_pages.Start();
 
         radPageView1.SelectedPage = _pages[next];

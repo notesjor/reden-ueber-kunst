@@ -29,6 +29,6 @@ namespace d14tive.WindowsClient.Pages.Abstract
       // ignore
     }
 
-    public int[] Timer { get; set; } = null;
+    public int Timer { get; set; } = MyConfiguration.PageTimeout;
   }
 }
