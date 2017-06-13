@@ -30,10 +30,12 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       this.centerControl1 = new d14tive.WindowsClient.Controls.CenterControl();
       this.tweetControl3 = new d14tive.WindowsClient.Controls.TweetControl();
       this.tweetControl2 = new d14tive.WindowsClient.Controls.TweetControl();
       this.tweetControl1 = new d14tive.WindowsClient.Controls.TweetControl();
+      this.timer1 = new System.Windows.Forms.Timer(this.components);
       ((System.ComponentModel.ISupportInitialize)(this.lbl_info)).BeginInit();
       this.centerControl1.DropZone.SuspendLayout();
       this.centerControl1.SuspendLayout();
@@ -70,10 +72,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl3.Name = "tweetControl3";
       this.tweetControl3.Padding = new System.Windows.Forms.Padding(5);
       this.tweetControl3.Size = new System.Drawing.Size(790, 200);
-      this.tweetControl3.Statistics = "radLabel3";
       this.tweetControl3.TabIndex = 2;
-      this.tweetControl3.UserAccountname = "radLabel2";
-      this.tweetControl3.UserDisplayname = "radLabel1";
       // 
       // tweetControl2
       // 
@@ -85,10 +84,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl2.Name = "tweetControl2";
       this.tweetControl2.Padding = new System.Windows.Forms.Padding(5);
       this.tweetControl2.Size = new System.Drawing.Size(790, 200);
-      this.tweetControl2.Statistics = "radLabel3";
       this.tweetControl2.TabIndex = 1;
-      this.tweetControl2.UserAccountname = "radLabel2";
-      this.tweetControl2.UserDisplayname = "radLabel1";
       // 
       // tweetControl1
       // 
@@ -100,10 +96,12 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl1.Name = "tweetControl1";
       this.tweetControl1.Padding = new System.Windows.Forms.Padding(5);
       this.tweetControl1.Size = new System.Drawing.Size(790, 200);
-      this.tweetControl1.Statistics = "";
       this.tweetControl1.TabIndex = 0;
-      this.tweetControl1.UserAccountname = "";
-      this.tweetControl1.UserDisplayname = "Twittern über Kunst";
+      // 
+      // timer1
+      // 
+      this.timer1.Interval = 10000;
+      this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
       // 
       // CurrentTweetPage
       // 
@@ -126,5 +124,6 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
     private TweetControl tweetControl3;
     private TweetControl tweetControl2;
     private TweetControl tweetControl1;
+    private System.Windows.Forms.Timer timer1;
   }
 }

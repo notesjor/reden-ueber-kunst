@@ -36,28 +36,6 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
     {
       centerControl1.Adjust(size);
       Initialize();
-
-      if (_dsel.Count < 3)
-        _dsel = new List<Guid>(_corpus.DocumentGuids);
-
-      var nlist = new List<Guid>();
-      for (var i = 0; i < 3; i++)
-      {
-        var idx = _rnd.Next(0, _dsel.Count);
-        nlist.Add(_dsel[idx]);
-        _dsel.RemoveAt(idx);
-      }
-
-      for (int i = 0; i < nlist.Count; i++)
-      {
-        var dsel = nlist[i];
-        var meta = _corpus.GetDocumentMetadata(dsel);
-
-        _controls[i].Content = _corpus.GetReadableDocument(dsel, "Wort");
-        _controls[i].UserAccountname = "@" + meta["Absender (Anzeigename)"];
-        _controls[i].UserDisplayname = meta["Absender (Name)"]?.ToString();
-        _controls[i].Statistics = $"{meta["Absender (Follower)"]} Follower | {meta["Absender (Tweets)"]} Tweets";        
-      }
     }
 
     private void Initialize()
@@ -68,8 +46,42 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       _corpus = CorpusAdapterWriteDirect.Create(@"tweets.cec6");
       _dsel = new List<Guid>(_corpus.DocumentGuids);
       _rnd = MyConfiguration.Random;
+      timer1_Tick(null, null);
+      timer1.Start();
 
       _init = true;
+    }
+
+    private void timer1_Tick(object sender, EventArgs e)
+    {
+      if (_dsel.Count < _controls.Count)
+        _dsel = new List<Guid>(_corpus.DocumentGuids);
+
+      var nlist = new List<Guid>();
+      for (var i = 0; i < _controls.Count; i++)
+      {
+        var idx = _rnd.Next(0, _dsel.Count);
+        nlist.Add(_dsel[idx]);
+        _dsel.RemoveAt(idx);
+      }
+
+      for (var i = 0; i < nlist.Count; i++)
+      {
+
+        try
+        {
+          var dsel = nlist[i];
+          var meta = _corpus.GetDocumentMetadata(dsel);
+
+          _controls[i].Content = _corpus.GetReadableDocument(dsel, "Wort");
+          _controls[i].Date = ((DateTime) meta["Datum"]).ToString("yyyy-MM-dd HH:mm:ss");
+          _controls[i].Username = meta["Absender (Name)"]?.ToString();
+        }
+        catch
+        {
+          // ignore
+        }
+      }
     }
   }
 }

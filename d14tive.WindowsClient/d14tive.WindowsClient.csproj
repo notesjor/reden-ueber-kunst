@@ -137,12 +137,6 @@
     <Compile Include="Controls\CenterControl.Designer.cs">
       <DependentUpon>CenterControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\HeatMap\HeatMapView.cs">
-      <DependentUpon>HeatMapView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\HeatMap\Model\HeatmapGroup.cs" />
-    <Compile Include="Controls\HeatMap\Model\HeatmapItem.cs" />
-    <Compile Include="Controls\HeatMap\Model\IHeatmapItem.cs" />
     <Compile Include="Controls\Helper\UserControlDesigner.cs" />
     <Compile Include="Controls\Tagger\SelectedTaggerItemChange.cs" />
     <Compile Include="Controls\Tagger\TaggerItem.cs" />
@@ -200,9 +194,6 @@
     <EmbeddedResource Include="Pages\App\WordCloud\WordCloudPage.resx">
       <DependentUpon>WordCloudPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\App\CorpusDistribution\CorpusDistributionPage.resx">
-      <DependentUpon>CorpusDistributionPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Img\PageImg.resx">
       <DependentUpon>PageImg.cs</DependentUpon>
     </EmbeddedResource>
@@ -247,12 +238,6 @@
     <Compile Include="Pages\App\WorldMap\WorldMapPage.Designer.cs">
       <DependentUpon>WorldMapPage.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\App\CorpusDistribution\CorpusDistributionPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\App\CorpusDistribution\CorpusDistributionPage.Designer.cs">
-      <DependentUpon>CorpusDistributionPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Img\PageImg.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -277,9 +262,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Influence.csv">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -314,10 +296,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\HeatMap\HeatMapView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Controls\Tagger\WpfTagger.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

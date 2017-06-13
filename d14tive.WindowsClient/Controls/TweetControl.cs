@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using d14tive.WindowsClient.Controls.Abstract;
 
 namespace d14tive.WindowsClient.Controls
@@ -10,35 +11,19 @@ namespace d14tive.WindowsClient.Controls
       InitializeComponent();
     }
 
-    public string UserDisplayname
+    public string Username
     {
-      set => txt_userDisplayname.Text = value;
-      get => txt_userDisplayname.Text;
+      set => txt_username.Text = value;
     }
 
-    public string UserAccountname
+    public string Date
     {
       set => txt_userAccountname.Text = value;
-      get => txt_userAccountname.Text;
     }
 
     public IEnumerable<IEnumerable<string>> Content
     {
       set => wpfTagger1.Text = value;
     }
-
-    public string Statistics
-    {
-      set => txt_statistics.Text = value;
-      get => txt_statistics.Text;
-    }
-
-    /*
-    public Image UserImage
-    {
-      set => img_user.Image = value;
-      get => img_user.Image;
-    }
-    */
   }
 }
