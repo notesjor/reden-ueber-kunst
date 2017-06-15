@@ -143,7 +143,7 @@ namespace d14tive.ExcelAnalytics
         Dictionary<string, double[]> meta;
         try
         {
-          meta = block.GetAggregatedRelativeSize("Land");
+          meta = block.GetAggregatedRelativeSize("Ländercode");
           if (meta == null || meta.Count < 1)
             continue;
         }
