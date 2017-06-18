@@ -24,6 +24,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
     public CurrentTweetPage()
     {
       InitializeComponent();
+      Timer = 8000;
       lbl_info.Text = "Eine subjektive Auswahl von Tweets zur #documenta14";
 
       _controls = new List<TweetControl>

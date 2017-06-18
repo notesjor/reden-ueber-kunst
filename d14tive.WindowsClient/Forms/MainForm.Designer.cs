@@ -33,11 +33,15 @@
       this.timer_pages = new System.Windows.Forms.Timer(this.components);
       this.panel1 = new System.Windows.Forms.Panel();
       this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
+      this.panel2 = new System.Windows.Forms.Panel();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
       this.panel1.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
+      this.panel2.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -62,8 +66,8 @@
       // 
       // panel1
       // 
+      this.panel1.Controls.Add(this.panel2);
       this.panel1.Controls.Add(this.radLabel1);
-      this.panel1.Controls.Add(this.pictureBox1);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
       this.panel1.Location = new System.Drawing.Point(0, 540);
       this.panel1.Name = "panel1";
@@ -78,20 +82,41 @@
       this.radLabel1.Name = "radLabel1";
       this.radLabel1.Size = new System.Drawing.Size(404, 60);
       this.radLabel1.TabIndex = 1;
-      this.radLabel1.Text = "<html>Projekt „Reden über Kunst - d14\"<br />www.reden-ueber-kunst.de - #RedenUebe" +
-    "rKunstD14<br />Institut für Germanistik</html>";
+      this.radLabel1.Text = "<html>Projekt „Reden über Kunst - d14\"<br /><strong><span style=\"font-size: 14pt\"" +
+    ">www.reden-ueber-kunst.de</span></strong></html>";
       this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
+      // 
+      // panel2
+      // 
+      this.panel2.Controls.Add(this.radLabel2);
+      this.panel2.Controls.Add(this.pictureBox1);
+      this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+      this.panel2.Location = new System.Drawing.Point(0, 0);
+      this.panel2.Name = "panel2";
+      this.panel2.Size = new System.Drawing.Size(311, 60);
+      this.panel2.TabIndex = 2;
       // 
       // pictureBox1
       // 
-      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Left;
-      this.pictureBox1.Image = global::d14tive.WindowsClient.Properties.Resources.Logo_Universitaet_928x268;
+      this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Top;
+      this.pictureBox1.Image = global::d14tive.WindowsClient.Properties.Resources.Logo_Universitaet_607x120;
       this.pictureBox1.Location = new System.Drawing.Point(0, 0);
       this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(257, 60);
+      this.pictureBox1.Size = new System.Drawing.Size(311, 37);
       this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;
+      // 
+      // radLabel2
+      // 
+      this.radLabel2.AutoSize = false;
+      this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.radLabel2.Location = new System.Drawing.Point(0, 37);
+      this.radLabel2.Name = "radLabel2";
+      this.radLabel2.Size = new System.Drawing.Size(311, 23);
+      this.radLabel2.TabIndex = 2;
+      this.radLabel2.Text = "Institut für Germanistik";
+      this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // MainForm
       // 
@@ -109,7 +134,9 @@
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
       this.panel1.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
+      this.panel2.ResumeLayout(false);
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
 
@@ -122,5 +149,7 @@
     private System.Windows.Forms.Panel panel1;
     private System.Windows.Forms.PictureBox pictureBox1;
     private Telerik.WinControls.UI.RadLabel radLabel1;
+    private System.Windows.Forms.Panel panel2;
+    private Telerik.WinControls.UI.RadLabel radLabel2;
   }
 }

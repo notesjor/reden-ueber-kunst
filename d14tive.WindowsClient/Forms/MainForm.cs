@@ -25,6 +25,8 @@ namespace d14tive.WindowsClient.Forms
     private List<RadPageViewPage> _pages = new List<RadPageViewPage>();
     private Random _random;
     private string _appDir;
+    private RadPageViewPage _defaultPage;
+    private bool _useDefaultPage = false;
 
     public MainForm()
     {
@@ -52,7 +54,7 @@ namespace d14tive.WindowsClient.Forms
     {
       LoadPagesApp();
       LoadPagesWeb();
-      LoadPagesPic();
+      LoadPagesImg();
 
       timer_pages_Tick(null, null);
       timer_pages.Start();
@@ -63,11 +65,7 @@ namespace d14tive.WindowsClient.Forms
       if (File.Exists(@"wordcloud.page"))
         AddPage(new WordCloudPage(_appDir));
       if (File.Exists(@"tweets.cec6"))
-      {
-        AddPage(new CurrentTweetPage());
-        AddPage(new CurrentTweetPage());
-        AddPage(new CurrentTweetPage());
-      }
+        AddPage(new CurrentTweetPage(), true);
     }
 
     private void LoadPagesWeb()
@@ -80,7 +78,7 @@ namespace d14tive.WindowsClient.Forms
       }
     }
 
-    private void LoadPagesPic()
+    private void LoadPagesImg()
     {
       var imgDir = Path.Combine(_appDir, "img");
       if (!Directory.Exists(imgDir))
@@ -116,7 +114,7 @@ namespace d14tive.WindowsClient.Forms
       }
     }
 
-    private void AddPage(AbstractPage page)
+    private void AddPage(AbstractPage page, bool defaultPage = false)
     {
       page.SuspendLayout();
 
@@ -128,6 +126,8 @@ namespace d14tive.WindowsClient.Forms
       master.Controls.Add(page);
 
       radPageView1.Pages.Add(master);
+      if (defaultPage)
+        _defaultPage = master;
 
       page.ResumeLayout(false);
     }
@@ -137,7 +137,18 @@ namespace d14tive.WindowsClient.Forms
       try
       {
         if (_pages.Count == 0)
+        {
           _pages.AddRange(radPageView1.Pages);
+          if (_defaultPage != null)
+            _pages.Remove(_defaultPage);
+        }
+
+        _useDefaultPage = !_useDefaultPage;
+        if (_defaultPage != null && _useDefaultPage)
+        {
+          SetPage(_defaultPage);
+          return;
+        }        
 
         if (_pages.Count == 0)
           timer_pages.Stop();
@@ -146,22 +157,7 @@ namespace d14tive.WindowsClient.Forms
         if (next < 0 || next >= _pages.Count)
           return;
 
-        if (radPageView1.SelectedPage != null && radPageView1.SelectedPage.Controls.Count == 1)
-          ((AbstractPage)_pages[next].Controls[0]).HidePage();
-
-        var page = _pages[next].Controls[0] as AbstractPage;
-        if (page == null)
-          throw new Exception();
-
-        page.ShowPage(radPageView1.Size);
-
-        timer_pages.Stop();
-        // Wenn PageImg dann berechne den Timer aus Zeit-Einzelseite * Seiten
-        // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
-        timer_pages.Interval = (page as PageImg)?.Images.Length * page.Timer ?? page.Timer;
-        timer_pages.Start();
-
-        radPageView1.SelectedPage = _pages[next];
+        SetPage(_pages[next]);
         _pages.RemoveAt(next);
       }
       catch (Exception ex)
@@ -169,6 +165,24 @@ namespace d14tive.WindowsClient.Forms
         timer_pages.Start();
         // ignore
       }
+    }
+
+    private void SetPage(RadPageViewPage page)
+    {
+      var aPage = page.Controls[0] as AbstractPage;
+      if (aPage == null)
+        throw new Exception();
+
+      if (radPageView1.SelectedPage != null && radPageView1.SelectedPage.Controls.Count == 1)
+        ((AbstractPage) radPageView1.SelectedPage.Controls[0]).HidePage();
+
+      aPage.ShowPage(radPageView1.Size);
+
+      timer_pages.Stop();
+      // Wenn PageImg dann berechne den Timer aus Zeit-Einzelseite * Seiten
+      // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
+      timer_pages.Interval = (aPage as PageImg)?.Images.Length * aPage.Timer ?? aPage.Timer;
+      timer_pages.Start();
     }
   }
 }

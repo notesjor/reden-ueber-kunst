@@ -63,6 +63,16 @@ namespace d14tive.WindowsClient.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logo_Universitaet_607x120 {
+            get {
+                object obj = ResourceManager.GetObject("Logo_Universitaet_607x120", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Logo_Universitaet_928x268 {
             get {
                 object obj = ResourceManager.GetObject("Logo_Universitaet_928x268", resourceCulture);
