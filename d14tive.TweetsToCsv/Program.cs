@@ -21,24 +21,9 @@ namespace d14tive.TweetsToCsv
 
       var corpus = CorpusAdapterWriteDirect.Create(ofd.FileName);
       Console.WriteLine(ofd.FileName);
+      Console.WriteLine($"{corpus.CountDocuments} tweets");
 
-      var meta = corpus.DocumentMetadata.ToDictionary(x => x.Key, x => x.Value);
-      Console.WriteLine($"{meta.Count} tweets");
-
-      var guids = new List<Guid>();
-      foreach (var x in meta)
-      {
-        if (!x.Value.ContainsKey("Referenz (Id)"))
-          continue;
-        if ((ulong)x.Value["Referenz (Id)"] > 0)
-          continue;
-        if (!x.Value.ContainsKey("Externe-URL (|-separiert)"))
-          continue;
-        if (!string.IsNullOrWhiteSpace(x.Value["Externe-URL (|-separiert)"]?.ToString()))
-          continue;
-
-        guids.Add(x.Key);
-      }
+      var guids = OriginalTweetFilter.GetOriginalTweets(corpus);
 
       Console.WriteLine($"{guids.Count} tweets matches all criteria");
 
