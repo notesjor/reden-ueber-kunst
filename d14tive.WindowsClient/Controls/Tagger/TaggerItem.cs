@@ -43,7 +43,6 @@ namespace d14tive.WindowsClient.Controls.Tagger
     /// </param>
     public TaggerItem(string text, int satzIdx, int wortIdx, SelectedTaggerItemChange call)
     {
-      _call = call;
       SatzIdx = satzIdx;
       WortIdx = wortIdx;
       Orientation = Orientation.Vertical;
@@ -62,7 +61,7 @@ namespace d14tive.WindowsClient.Controls.Tagger
       {
         _selected = !_selected;
 
-        _call?.Invoke(SatzIdx, WortIdx, _selected);
+        call?.Invoke(SatzIdx, WortIdx, _selected);
       };
 
       Margin = new Thickness(0, 0, 0, 5);
