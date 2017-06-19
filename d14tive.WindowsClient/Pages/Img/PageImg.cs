@@ -15,13 +15,13 @@ namespace d14tive.WindowsClient.Pages.Img
   {
     private int _index;
 
-    public PageImg()
+    public PageImg(string label)
     {
       InitializeComponent();
+      lbl_info.Text = label;
     }
 
     public Image[] Images { get; set; }
-    public string Label { get; set; } = "";
 
     public override void ShowPage(Size size)
     {

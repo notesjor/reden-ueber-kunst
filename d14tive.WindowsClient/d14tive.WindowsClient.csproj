@@ -53,12 +53,6 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DotNetBrowser">
-      <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\Extern\DotNetBrowser\DotNetBrowser.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetBrowser.Chromium">
-      <HintPath>..\..\Magisterarbeit\CorpusExplorerNext\Extern\DotNetBrowser\DotNetBrowser.Chromium.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -143,12 +137,6 @@
     <Compile Include="Controls\Tagger\WpfTagger.cs">
       <DependentUpon>WpfTagger.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\WebBrowserControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Controls\WebBrowserControl.Designer.cs">
-      <DependentUpon>WebBrowserControl.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\Abstract\AbstractFillForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -188,17 +176,8 @@
     <EmbeddedResource Include="Pages\App\CurrentTweets\CurrentTweetPage.resx">
       <DependentUpon>CurrentTweetPage.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Pages\App\TweetTrader\TweetTrader.resx">
-      <DependentUpon>TweetTrader.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\App\WordCloud\WordCloudPage.resx">
-      <DependentUpon>WordCloudPage.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Pages\Img\PageImg.resx">
       <DependentUpon>PageImg.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Pages\Web\PageWeb.resx">
-      <DependentUpon>PageWeb.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <Compile Include="MyConfiguration.cs" />
@@ -220,35 +199,11 @@
     <Compile Include="Controls\TweetControl.Designer.cs">
       <DependentUpon>TweetControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Pages\App\TweetTrader\TweetTrader.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\App\TweetTrader\TweetTrader.Designer.cs">
-      <DependentUpon>TweetTrader.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\App\WordCloud\WordCloudPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\App\WordCloud\WordCloudPage.Designer.cs">
-      <DependentUpon>WordCloudPage.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\App\WorldMap\WorldMapPage.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\App\WorldMap\WorldMapPage.Designer.cs">
-      <DependentUpon>WorldMapPage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Img\PageImg.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Pages\Img\PageImg.Designer.cs">
       <DependentUpon>PageImg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Web\PageWeb.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Pages\Web\PageWeb.Designer.cs">
-      <DependentUpon>PageWeb.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -271,9 +226,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="wordcloud.page">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -281,9 +233,6 @@
   <ItemGroup>
     <!--sirinie -->
     <None Include="Resources\Logo_Universitaet_928x268.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="teamdev.licenses" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.Json\CorpusExplorer.Sdk.Extern.Json.csproj">

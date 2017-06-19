@@ -12,9 +12,7 @@ using System.Windows.Forms;
 using d14tive.WindowsClient.Forms.Abstract;
 using d14tive.WindowsClient.Pages.Abstract;
 using d14tive.WindowsClient.Pages.App.CurrentTweets;
-using d14tive.WindowsClient.Pages.App.WordCloud;
 using d14tive.WindowsClient.Pages.Img;
-using d14tive.WindowsClient.Pages.Web;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
@@ -53,7 +51,6 @@ namespace d14tive.WindowsClient.Forms
     private void MainForm_Load(object sender, EventArgs e)
     {
       LoadPagesApp();
-      LoadPagesWeb();
       LoadPagesImg();
 
       timer_pages_Tick(null, null);
@@ -62,20 +59,8 @@ namespace d14tive.WindowsClient.Forms
 
     private void LoadPagesApp()
     {
-      if (File.Exists(@"wordcloud.page"))
-        AddPage(new WordCloudPage(_appDir));
       if (File.Exists(@"tweets.cec6"))
         AddPage(new CurrentTweetPage(), true);
-    }
-
-    private void LoadPagesWeb()
-    {
-      var htmls = Directory.GetFiles(_appDir, "*.html");
-
-      foreach (var html in htmls)
-      {
-        AddPage(new PageWeb { Url = html, Timer = GetTimer(html + "_.timer") });
-      }
     }
 
     private void LoadPagesImg()
@@ -90,13 +75,13 @@ namespace d14tive.WindowsClient.Forms
         var images = Directory.GetFiles(dir, "*.png").OrderBy(x => x).Select(Image.FromFile).ToArray();
 
         if (images.Length > 0)
-          AddPage(new PageImg { Images = images, Timer = GetTimer(Path.Combine(dir, "_.timer")), Label = GetLabel(Path.Combine(dir, "_.label")) });
+          AddPage(new PageImg(GetLabel(Path.Combine(dir, "_.label"))) { Images = images, Timer = GetTimer(Path.Combine(dir, "_.timer")) });
       }
     }
 
     private string GetLabel(string path)
     {
-      return File.Exists(path) ? File.ReadAllText(path) : string.Empty;
+      return File.Exists(path) ? File.ReadAllText(path, Encoding.UTF8) : string.Empty;
     }
 
     private int GetTimer(string path)
@@ -177,6 +162,7 @@ namespace d14tive.WindowsClient.Forms
         ((AbstractPage) radPageView1.SelectedPage.Controls[0]).HidePage();
 
       aPage.ShowPage(radPageView1.Size);
+      radPageView1.SelectedPage = page;
 
       timer_pages.Stop();
       // Wenn PageImg dann berechne den Timer aus Zeit-Einzelseite * Seiten

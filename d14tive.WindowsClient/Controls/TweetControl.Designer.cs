@@ -50,7 +50,7 @@
       this.radPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.radPanel1.Location = new System.Drawing.Point(5, 5);
       this.radPanel1.Name = "radPanel1";
-      this.radPanel1.Size = new System.Drawing.Size(790, 190);
+      this.radPanel1.Size = new System.Drawing.Size(790, 90);
       this.radPanel1.TabIndex = 0;
       // 
       // elementHost1
@@ -58,7 +58,7 @@
       this.elementHost1.Dock = System.Windows.Forms.DockStyle.Fill;
       this.elementHost1.Location = new System.Drawing.Point(0, 48);
       this.elementHost1.Name = "elementHost1";
-      this.elementHost1.Size = new System.Drawing.Size(790, 142);
+      this.elementHost1.Size = new System.Drawing.Size(790, 42);
       this.elementHost1.TabIndex = 1;
       this.elementHost1.Text = "elementHost1";
       this.elementHost1.Child = this.wpfTagger1;
@@ -94,7 +94,7 @@
       this.txt_userAccountname.Text = "radLabel2";
       this.txt_userAccountname.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
       // 
-      // txt_userDisplayname
+      // txt_username
       // 
       this.txt_username.Dock = System.Windows.Forms.DockStyle.Top;
       this.txt_username.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold);
@@ -114,7 +114,7 @@
       this.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
       this.Name = "TweetControl";
       this.Padding = new System.Windows.Forms.Padding(5);
-      this.Size = new System.Drawing.Size(800, 200);
+      this.Size = new System.Drawing.Size(800, 100);
       ((System.ComponentModel.ISupportInitialize)(this.radPanel1)).EndInit();
       this.radPanel1.ResumeLayout(false);
       this.panel1.ResumeLayout(false);

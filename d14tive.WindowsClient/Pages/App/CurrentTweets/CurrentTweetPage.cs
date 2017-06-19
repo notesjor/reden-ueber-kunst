@@ -29,7 +29,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
 
       _controls = new List<TweetControl>
       {
-        tweetControl1, tweetControl2, tweetControl3
+        tweetControl1, tweetControl2, tweetControl3, tweetControl4, tweetControl5
       };
     }
 
