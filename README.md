@@ -8,15 +8,29 @@ Technischer Hintergrund: Die Software wurde in C#/.NET mit Hilfe des CorpusExplo
 
 ## Projektmappenbeschreibung
 
-- __d14tive.ExcelAnalytics__ - Automatische Auswertungen mittels CorpusExplorer. Ausgabe erfolgt als CSV - Die dann mittels Microsoft Excel und Microsoft Power BI visualisiert wird. Visualisierungen werden als PNG-Grafik in die Webseite sowie in d14tive.WindowsClient eingebunden.
-
-- __d14tive.TweetCollector__ - Anwendungen zum Sammeln von Tweets
+- __d14tive.Collector.Tweet__ - Anwendungen zum Sammeln von Tweets
 
 -- __d14tive.TweetCollector.StreamApi__ - Überwacht den Twitter-Stream (Streaming API) und zeichnet alle Tweets auf, die den Suchkriterien entsprechen.
 
 -- __d14tive.TweetCollector.StreamApiService__ - Stellt d14tive.TweetCollector.StreamApi als Windows Dienst zur Verfügung und überwacht die reibungslose Funktion des Programms.
 
+-- __d14tive.Collector.Tweet.TweetJsonCleaner__ - Bereinigt einen Ordner (löscht die JSON-Dateien) - Tweets müssen in Englisch, Griechisch oder Deutsch verfasst sein.
+
+-- __d14tive.Collector.Tweet.TweetJsonConverter__ - Konvertiert JSON-Dateien in CEC6-Korpora (inkl. Spracherkennung in Englisch, Griechisch und Deutsch)
+
 -- __d14tive.TweetCollector.TwitterAccountDump__ - Erlaubt es die letzten 10'000 Tweets eines Accounts zu archivieren.
+
+- __d14tive.Collector.Web__ - Anwendungen zum Sammeln der documenta14-Webseite
+
+-- __d14tive.Collector.Web.AutoGit__ - Sollte nach einem erfolgreichen Webscraping-Vorgang ausgeführt werden, um die Änderungen an der Webseite mit GIT zu sichern.
+
+-- __d14tive.Collector.Web.CustomCrawler__ - Erster Testversuch eines simplen Webscrapers. (obsolete)
+
+-- __d14tive.Collector.Web.FileScraper__ - Wandelt HTML-Seiten von documenta14.de in CEC6-Korpora um.
+
+-- __d14tive.Collector.Web.HTTrackBasedCrawler__ - Konfigurationsdateien für Webscraper auf Basis von HTTrack (http://www.httrack.com/)
+
+- __d14tive.ExcelAnalytics__ - Automatische Auswertungen mittels CorpusExplorer. Ausgabe erfolgt als CSV - Die dann mittels Microsoft Excel und Microsoft Power BI visualisiert wird. Visualisierungen werden als PNG-Grafik in die Webseite sowie in d14tive.WindowsClient eingebunden.
 
 - __d14tive.TweetSelector__ - Erlaubt es, ein vorbereitetes Tweet-Korpus (CEC6 - CorpusExplorer) nach individuellen Originaltweets zu durchsuchen (Filtertechnik in d14tive.TweetsToCsv implementiert - siehe OriginalTweetFilter.cs) und besonders relevante Tweets zu markieren (Haken in Spalte "?" setzen). Die erzeugte Ausgaben "tweets.cec6" im Programmverzeichnis, kann in d14tive.WindowsClient angezeigt werden.
 
