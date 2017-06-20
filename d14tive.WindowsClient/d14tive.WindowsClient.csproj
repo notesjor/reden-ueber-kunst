@@ -199,6 +199,8 @@
     <Compile Include="Controls\TweetControl.Designer.cs">
       <DependentUpon>TweetControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\App\CurrentTweets\Model\TweetEntry.cs" />
+    <Compile Include="Pages\App\CurrentTweets\Model\TweetGroup.cs" />
     <Compile Include="Pages\Img\PageImg.cs">
       <SubType>UserControl</SubType>
     </Compile>

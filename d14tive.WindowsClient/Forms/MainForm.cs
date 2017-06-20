@@ -59,7 +59,7 @@ namespace d14tive.WindowsClient.Forms
 
     private void LoadPagesApp()
     {
-      if (File.Exists(@"tweets.cec6"))
+      if (File.Exists(@"tweets.txt"))
         AddPage(new CurrentTweetPage(), true);
     }
 

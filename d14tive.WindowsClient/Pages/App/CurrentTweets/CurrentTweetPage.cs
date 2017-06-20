@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using d14tive.WindowsClient.Controls;
 using d14tive.WindowsClient.Pages.Abstract;
+using d14tive.WindowsClient.Pages.App.CurrentTweets.Model;
 
 namespace d14tive.WindowsClient.Pages.App.CurrentTweets
 {
   public partial class CurrentTweetPage : AbstractPage
   {
     private bool _init;
-    private CorpusAdapterWriteDirect _corpus;
-    private List<Guid> _dsel;
+    private List<TweetGroup> _groups = new List<TweetGroup>();
+    private List<TweetGroup> _stack;
     private Random _rnd;
-    private List<TweetControl> _controls;
+    private TweetControl[] _controls;
 
     public CurrentTweetPage()
     {
@@ -27,7 +30,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       Timer = 8000;
       lbl_info.Text = "Eine subjektive Auswahl von Tweets zur #documenta14";
 
-      _controls = new List<TweetControl>
+      _controls = new []
       {
         tweetControl1, tweetControl2, tweetControl3, tweetControl4, tweetControl5
       };
@@ -44,9 +47,35 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       if (_init)
         return;
 
-      _corpus = CorpusAdapterWriteDirect.Create(@"tweets.cec6");
-      _dsel = new List<Guid>(_corpus.DocumentGuids);
+      var lines = File.ReadAllLines("tweets.txt", Encoding.UTF8);
+      TweetGroup group = null;
+      foreach (var line in lines)
+      {
+        if (group == null)
+        {
+          if (string.IsNullOrWhiteSpace(line))
+            continue;
+          group = new TweetGroup { Topic = line };
+          continue;
+        }
+
+        if (string.IsNullOrWhiteSpace(line))
+        {
+          if (group.Entries.Count >= 5)
+            _groups.Add(group);
+          group = null;
+          continue;
+        }
+
+        group.Entries.Add(new TweetEntry {Text = line});
+      }
+
+      if (group != null && group.Entries.Count >= 5)
+        _groups.Add(group);
+
+      _stack = new List<TweetGroup>(_groups);
       _rnd = MyConfiguration.Random;
+
       timer1_Tick(null, null);
       timer1.Start();
 
@@ -55,28 +84,27 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
 
     private void timer1_Tick(object sender, EventArgs e)
     {
-      if (_dsel.Count < _controls.Count)
-        _dsel = new List<Guid>(_corpus.DocumentGuids);
+      if (_stack.Count < 1)
+        _stack = new List<TweetGroup>(_groups);
 
-      var nlist = new List<Guid>();
-      for (var i = 0; i < _controls.Count; i++)
+      var idx = _rnd.Next(0, _stack.Count);
+      var grp = _groups[idx];
+      _stack.RemoveAt(idx);
+
+      lbl_info.Text = grp.Topic;
+
+      var twt = new List<TweetEntry>(grp.Entries);
+      foreach (var c in _controls)
       {
-        var idx = _rnd.Next(0, _dsel.Count);
-        nlist.Add(_dsel[idx]);
-        _dsel.RemoveAt(idx);
-      }
-
-      for (var i = 0; i < nlist.Count; i++)
-      {
-
         try
         {
-          var dsel = nlist[i];
-          var meta = _corpus.GetDocumentMetadata(dsel);
+          var twidx = _rnd.Next(0, twt.Count);
+          var tweet = twt[twidx];
+          twt.RemoveAt(twidx);
 
-          _controls[i].Content = _corpus.GetReadableDocument(dsel, "Wort");
-          _controls[i].Date = ((DateTime) meta["Datum"]).ToString("yyyy-MM-dd HH:mm:ss");
-          _controls[i].Username = meta["Absender (Name)"]?.ToString();
+          c.Content = new List<string[]> {tweet.Text.Split(new[] {" "}, StringSplitOptions.RemoveEmptyEntries)};
+          //c.Date = ((DateTime)meta["Datum"]).ToString("yyyy-MM-dd HH:mm:ss");
+          //c.Username = meta["Absender (Name)"]?.ToString();
         }
         catch
         {
