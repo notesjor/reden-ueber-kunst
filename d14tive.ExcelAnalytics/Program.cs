@@ -16,6 +16,8 @@ namespace d14tive.ExcelAnalytics
 {
   class Program
   {
+    private static int _zeitungenMax = 0;
+
     [STAThread]
     static void Main(string[] args)
     {
@@ -23,28 +25,61 @@ namespace d14tive.ExcelAnalytics
       var corpus_news = SelectCorpus();
       Console.WriteLine(corpus_news);
 
-      Console.Write("Select TWEET-Corpus: ");
-      var corpus_tweet = SelectCorpus();
-      Console.WriteLine(corpus_tweet);
+      //Console.Write("Select TWEET-Corpus: ");
+      //var corpus_tweet = SelectCorpus();
+      //Console.WriteLine(corpus_tweet);
 
       var cec_news = CorpusAdapterWriteDirect.Create(corpus_news);
-      var cec_tweet = CorpusAdapterWriteDirect.Create(corpus_tweet);
+      //var cec_tweet = CorpusAdapterWriteDirect.Create(corpus_tweet);
       Console.WriteLine("CORPORA LOADED");
 
       CalculateBasicStatistics(cec_news);
-      CalculateBasicStatistics(cec_tweet);
+      //CalculateBasicStatistics(cec_tweet);
       Console.WriteLine("BASIC DONE");
 
       var cluster_news = GetDateClusters(cec_news);
-      var cluster_tweet = GetDateClusters(cec_tweet);
+      //var cluster_tweet = GetDateClusters(cec_tweet);
 
-      CalculateInfluence(cluster_news, cec_news.CorpusDisplayname, "Zeitung");
-      CalculateInfluence(cluster_tweet, cec_tweet.CorpusDisplayname, "Absender (Id)");
-      Console.WriteLine("INFLUENCE DONE");
+      CalculateNewspapersAllIn(cluster_news);
 
-      CalculateCountry(cluster_tweet, cec_tweet.CorpusDisplayname);
+      //CalculateInfluence(cluster_news, cec_news.CorpusDisplayname, "Zeitung");
+      //CalculateInfluence(cluster_tweet, cec_tweet.CorpusDisplayname, "Absender (Id)");
+      //Console.WriteLine("INFLUENCE DONE");
+      //
+      //CalculateCountry(cluster_tweet, cec_tweet.CorpusDisplayname);
       Console.WriteLine("DONE");
       Console.ReadLine();
+    }
+
+    private static void CalculateNewspapersAllIn(Selection[] clusterNews)
+    {
+      var outputAt = new Queue<double>();
+      outputAt.Enqueue(0.80);
+      outputAt.Enqueue(0.90);
+      outputAt.Enqueue(0.95);
+      outputAt.Enqueue(0.99);
+      outputAt.Enqueue(1.00);
+
+      var hash = new HashSet<string>();
+      var outA = outputAt.Dequeue();
+      var outC = outA * _zeitungenMax;
+      foreach (var c in clusterNews)
+      {
+        var meta = c.DocumentMetadata;
+        foreach (var pair in meta)
+          if (pair.Value.ContainsKey("Zeitung"))
+            hash.Add(pair.Value["Zeitung"]?.ToString());
+
+        if (hash.Count < outC)
+          continue;
+
+        Console.WriteLine($"{((int)(outA * 100.0)):D3}% Zeitungen erreicht am {c.Displayname}");
+        if (outputAt.Count == 0)
+          break;
+
+        outA = outputAt.Dequeue();
+        outC = outA * _zeitungenMax;
+      }
     }
 
     private static Selection[] GetDateClusters(CorpusAdapterWriteDirect corpus)
@@ -65,6 +100,7 @@ namespace d14tive.ExcelAnalytics
       stb.AppendLine($"Types: {corpus.GetLayerValues("Wort").Count()}");
 
       var autoren = new HashSet<string>();
+      var zeitung = new HashSet<string>();
       var dtMin = DateTime.MaxValue;
       var dtMax = DateTime.MinValue;
 
@@ -73,6 +109,8 @@ namespace d14tive.ExcelAnalytics
       {
         if (doc.Value.ContainsKey("Autor"))
           autoren.Add(doc.Value["Autor"]?.ToString());
+        if (doc.Value.ContainsKey("Zeitung"))
+          zeitung.Add(doc.Value["Zeitung"]?.ToString());
         if (doc.Value.ContainsKey("Absender (Id)"))
           autoren.Add(doc.Value["Absender (Id)"]?.ToString());
         if (doc.Value.ContainsKey("Datum") && doc.Value["Datum"] is DateTime)
@@ -88,6 +126,10 @@ namespace d14tive.ExcelAnalytics
       }
 
       stb.AppendLine($"Autoren: {autoren.Count}");
+      stb.AppendLine($"Zeitungen: {zeitung.Count}");
+      if (zeitung.Count > _zeitungenMax)
+        _zeitungenMax = zeitung.Count;
+
       stb.AppendLine($"DT-MIN: {dtMin:yyyy-MM-dd}");
       stb.AppendLine($"DT-MAX: {dtMax:yyyy-MM-dd}");
       File.WriteAllText(corpus.CorpusDisplayname + "_basicStat.csv", stb.ToString());

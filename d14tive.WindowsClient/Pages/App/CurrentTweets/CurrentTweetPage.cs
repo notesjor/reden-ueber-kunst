@@ -27,8 +27,8 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
     public CurrentTweetPage()
     {
       InitializeComponent();
-      Timer = 8000;
-      lbl_info.Text = "Eine subjektive Auswahl von Tweets zur #documenta14";
+      Timer = 10000;
+      lbl_info.Text = "Tweets zur #documenta14";
 
       _controls = new []
       {
@@ -40,6 +40,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
     {
       centerControl1.Adjust(size);
       Initialize();
+      timer1_Tick(null, null);
     }
 
     private void Initialize()
@@ -55,8 +56,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
         {
           if (string.IsNullOrWhiteSpace(line))
             continue;
-          group = new TweetGroup { Topic = line };
-          continue;
+          group = new TweetGroup { Topic = lbl_info.Text };
         }
 
         if (string.IsNullOrWhiteSpace(line))
@@ -75,10 +75,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
 
       _stack = new List<TweetGroup>(_groups);
       _rnd = MyConfiguration.Random;
-
-      timer1_Tick(null, null);
-      timer1.Start();
-
+      
       _init = true;
     }
 

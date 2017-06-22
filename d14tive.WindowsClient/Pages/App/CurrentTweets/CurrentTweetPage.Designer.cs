@@ -30,14 +30,12 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
     /// </summary>
     private void InitializeComponent()
     {
-      this.components = new System.ComponentModel.Container();
       this.centerControl1 = new d14tive.WindowsClient.Controls.CenterControl();
+      this.tweetControl5 = new d14tive.WindowsClient.Controls.TweetControl();
+      this.tweetControl4 = new d14tive.WindowsClient.Controls.TweetControl();
       this.tweetControl3 = new d14tive.WindowsClient.Controls.TweetControl();
       this.tweetControl2 = new d14tive.WindowsClient.Controls.TweetControl();
       this.tweetControl1 = new d14tive.WindowsClient.Controls.TweetControl();
-      this.timer1 = new System.Windows.Forms.Timer(this.components);
-      this.tweetControl4 = new d14tive.WindowsClient.Controls.TweetControl();
-      this.tweetControl5 = new d14tive.WindowsClient.Controls.TweetControl();
       ((System.ComponentModel.ISupportInitialize)(this.lbl_info)).BeginInit();
       this.centerControl1.DropZone.SuspendLayout();
       this.centerControl1.SuspendLayout();
@@ -50,6 +48,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       // 
       // centerControl1.DropZone
       // 
+      this.centerControl1.DropZone.BackColor = System.Drawing.Color.Black;
       this.centerControl1.DropZone.Controls.Add(this.tweetControl5);
       this.centerControl1.DropZone.Controls.Add(this.tweetControl4);
       this.centerControl1.DropZone.Controls.Add(this.tweetControl3);
@@ -66,12 +65,36 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.centerControl1.Size = new System.Drawing.Size(800, 574);
       this.centerControl1.TabIndex = 0;
       // 
+      // tweetControl5
+      // 
+      this.tweetControl5.BackColor = System.Drawing.Color.Black;
+      this.tweetControl5.Dock = System.Windows.Forms.DockStyle.Top;
+      this.tweetControl5.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.tweetControl5.ForeColor = System.Drawing.Color.White;
+      this.tweetControl5.Location = new System.Drawing.Point(0, 444);
+      this.tweetControl5.Name = "tweetControl5";
+      this.tweetControl5.Padding = new System.Windows.Forms.Padding(5);
+      this.tweetControl5.Size = new System.Drawing.Size(790, 111);
+      this.tweetControl5.TabIndex = 4;
+      // 
+      // tweetControl4
+      // 
+      this.tweetControl4.BackColor = System.Drawing.Color.Black;
+      this.tweetControl4.Dock = System.Windows.Forms.DockStyle.Top;
+      this.tweetControl4.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.tweetControl4.ForeColor = System.Drawing.Color.White;
+      this.tweetControl4.Location = new System.Drawing.Point(0, 333);
+      this.tweetControl4.Name = "tweetControl4";
+      this.tweetControl4.Padding = new System.Windows.Forms.Padding(5);
+      this.tweetControl4.Size = new System.Drawing.Size(790, 111);
+      this.tweetControl4.TabIndex = 3;
+      // 
       // tweetControl3
       // 
-      this.tweetControl3.BackColor = System.Drawing.Color.White;
+      this.tweetControl3.BackColor = System.Drawing.Color.Black;
       this.tweetControl3.Dock = System.Windows.Forms.DockStyle.Top;
-      this.tweetControl3.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.tweetControl3.ForeColor = System.Drawing.Color.Black;
+      this.tweetControl3.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.tweetControl3.ForeColor = System.Drawing.Color.White;
       this.tweetControl3.Location = new System.Drawing.Point(0, 222);
       this.tweetControl3.Name = "tweetControl3";
       this.tweetControl3.Padding = new System.Windows.Forms.Padding(5);
@@ -80,10 +103,10 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       // 
       // tweetControl2
       // 
-      this.tweetControl2.BackColor = System.Drawing.Color.White;
+      this.tweetControl2.BackColor = System.Drawing.Color.Black;
       this.tweetControl2.Dock = System.Windows.Forms.DockStyle.Top;
-      this.tweetControl2.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.tweetControl2.ForeColor = System.Drawing.Color.Black;
+      this.tweetControl2.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.tweetControl2.ForeColor = System.Drawing.Color.White;
       this.tweetControl2.Location = new System.Drawing.Point(0, 111);
       this.tweetControl2.Name = "tweetControl2";
       this.tweetControl2.Padding = new System.Windows.Forms.Padding(5);
@@ -92,49 +115,21 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       // 
       // tweetControl1
       // 
-      this.tweetControl1.BackColor = System.Drawing.Color.White;
+      this.tweetControl1.BackColor = System.Drawing.Color.Black;
       this.tweetControl1.Dock = System.Windows.Forms.DockStyle.Top;
-      this.tweetControl1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.tweetControl1.ForeColor = System.Drawing.Color.Black;
+      this.tweetControl1.Font = new System.Drawing.Font("Courier New", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.tweetControl1.ForeColor = System.Drawing.Color.White;
       this.tweetControl1.Location = new System.Drawing.Point(0, 0);
       this.tweetControl1.Name = "tweetControl1";
       this.tweetControl1.Padding = new System.Windows.Forms.Padding(5);
       this.tweetControl1.Size = new System.Drawing.Size(790, 111);
       this.tweetControl1.TabIndex = 0;
       // 
-      // timer1
-      // 
-      this.timer1.Interval = 8000;
-      this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-      // 
-      // tweetControl4
-      // 
-      this.tweetControl4.BackColor = System.Drawing.Color.White;
-      this.tweetControl4.Dock = System.Windows.Forms.DockStyle.Top;
-      this.tweetControl4.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.tweetControl4.ForeColor = System.Drawing.Color.Black;
-      this.tweetControl4.Location = new System.Drawing.Point(0, 333);
-      this.tweetControl4.Name = "tweetControl4";
-      this.tweetControl4.Padding = new System.Windows.Forms.Padding(5);
-      this.tweetControl4.Size = new System.Drawing.Size(790, 111);
-      this.tweetControl4.TabIndex = 3;
-      // 
-      // tweetControl5
-      // 
-      this.tweetControl5.BackColor = System.Drawing.Color.White;
-      this.tweetControl5.Dock = System.Windows.Forms.DockStyle.Top;
-      this.tweetControl5.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.tweetControl5.ForeColor = System.Drawing.Color.Black;
-      this.tweetControl5.Location = new System.Drawing.Point(0, 444);
-      this.tweetControl5.Name = "tweetControl5";
-      this.tweetControl5.Padding = new System.Windows.Forms.Padding(5);
-      this.tweetControl5.Size = new System.Drawing.Size(790, 111);
-      this.tweetControl5.TabIndex = 4;
-      // 
       // CurrentTweetPage
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.BackColor = System.Drawing.Color.White;
       this.Controls.Add(this.centerControl1);
       this.Name = "CurrentTweetPage";
       this.Controls.SetChildIndex(this.lbl_info, 0);
@@ -152,7 +147,6 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
     private TweetControl tweetControl3;
     private TweetControl tweetControl2;
     private TweetControl tweetControl1;
-    private System.Windows.Forms.Timer timer1;
     private TweetControl tweetControl5;
     private TweetControl tweetControl4;
   }

@@ -52,6 +52,8 @@ namespace d14tive.WindowsClient.Controls.Tagger
         {
           Content = text,
           Padding = new Thickness(0, 0, 3, 0),
+          Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
+          FontFamily = new FontFamily("Courier New"),
           FontSize = 18
         });
 
@@ -95,11 +97,11 @@ namespace d14tive.WindowsClient.Controls.Tagger
         return;
 
       var rect = new StackPanel { Height = 13, Width = Width };
-      var boar = new Border {BorderThickness = new Thickness(0, 2, 0, 0), BorderBrush = new SolidColorBrush(color)};
+      var boar = new Border { BorderThickness = new Thickness(0, 2, 0, 0), BorderBrush = new SolidColorBrush(color) };
       rect.Children.Add(boar);
       rect.Children.Add(
         new TextBlock
-        {     
+        {
           Foreground = new SolidColorBrush(color),
           Text = label,
           FontSize = 9,
