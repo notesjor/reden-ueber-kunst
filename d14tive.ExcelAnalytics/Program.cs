@@ -21,34 +21,40 @@ namespace d14tive.ExcelAnalytics
     [STAThread]
     static void Main(string[] args)
     {
-      Console.Write("Select NEWS-Corpus: ");
-      var corpus_news = SelectCorpus();
-      Console.WriteLine(corpus_news);
+      Console.Write("How many corpora?: ");
+      var max = int.Parse(Console.ReadLine());
 
-      //Console.Write("Select TWEET-Corpus: ");
-      //var corpus_tweet = SelectCorpus();
-      //Console.WriteLine(corpus_tweet);
+      for (int i = 0; i < max; i++)
+      {
+        Console.Write("Corpus type (t=tweet / n=news): ");
+        var type = Console.ReadLine();
 
-      var cec_news = CorpusAdapterWriteDirect.Create(corpus_news);
-      //var cec_tweet = CorpusAdapterWriteDirect.Create(corpus_tweet);
-      Console.WriteLine("CORPORA LOADED");
+        Console.Write("Select corpus: ");
+        var corpus = SelectCorpus();
+        Console.Write(corpus);
 
-      CalculateBasicStatistics(cec_news);
-      //CalculateBasicStatistics(cec_tweet);
-      Console.WriteLine("BASIC DONE");
+        var cec = CorpusAdapterWriteDirect.Create(corpus);
+        Console.WriteLine("...ok!");
 
-      var cluster_news = GetDateClusters(cec_news);
-      //var cluster_tweet = GetDateClusters(cec_tweet);
+        CalculateBasicStatistics(cec);
+        Console.WriteLine("BASIC DONE");
 
-      CalculateNewspapersAllIn(cluster_news);
+        var cluster = GetDateClusters(cec);
 
-      //CalculateInfluence(cluster_news, cec_news.CorpusDisplayname, "Zeitung");
-      //CalculateInfluence(cluster_tweet, cec_tweet.CorpusDisplayname, "Absender (Id)");
-      //Console.WriteLine("INFLUENCE DONE");
-      //
-      //CalculateCountry(cluster_tweet, cec_tweet.CorpusDisplayname);
-      Console.WriteLine("DONE");
-      Console.ReadLine();
+        if (type == "n")
+        {
+          CalculateNewspapersAllIn(cluster);
+          CalculateInfluence(cluster, cec.CorpusDisplayname, "Zeitung");
+        }
+        if (type == "t")
+        {
+          CalculateInfluence(cluster, cec.CorpusDisplayname, "Absender (Id)");
+          CalculateCountry(cluster, cec.CorpusDisplayname);
+        }
+
+        Console.WriteLine("DONE");
+        Console.ReadLine();
+      }
     }
 
     private static void CalculateNewspapersAllIn(Selection[] clusterNews)
