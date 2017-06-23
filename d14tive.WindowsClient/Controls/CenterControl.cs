@@ -28,7 +28,7 @@ namespace d14tive.WindowsClient.Controls
     {
       panel_left.BackColor = panel_right.BackColor = panel_bottom.BackColor = panel_up.BackColor = Color.White;
 
-      var width = size.Width - 800;
+      var width = size.Width - 1200;
       var height = size.Height - 600;
 
       if (width > 1)

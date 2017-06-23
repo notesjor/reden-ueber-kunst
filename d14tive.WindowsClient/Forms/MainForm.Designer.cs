@@ -32,16 +32,16 @@
       this.radPageView1 = new Telerik.WinControls.UI.RadPageView();
       this.timer_pages = new System.Windows.Forms.Timer(this.components);
       this.panel1 = new System.Windows.Forms.Panel();
-      this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
       this.panel2 = new System.Windows.Forms.Panel();
-      this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.radLabel2 = new Telerik.WinControls.UI.RadLabel();
+      this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.radLabel1 = new Telerik.WinControls.UI.RadLabel();
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).BeginInit();
       this.panel1.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
       this.panel2.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
       this.SuspendLayout();
       // 
@@ -74,18 +74,6 @@
       this.panel1.Size = new System.Drawing.Size(800, 60);
       this.panel1.TabIndex = 1;
       // 
-      // radLabel1
-      // 
-      this.radLabel1.AutoSize = false;
-      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Right;
-      this.radLabel1.Location = new System.Drawing.Point(396, 0);
-      this.radLabel1.Name = "radLabel1";
-      this.radLabel1.Size = new System.Drawing.Size(404, 60);
-      this.radLabel1.TabIndex = 1;
-      this.radLabel1.Text = "<html>Projekt „Reden über Kunst - d14\"<br /><strong><span style=\"font-size: 14pt\"" +
-    ">www.reden-ueber-kunst.de</span></strong></html>";
-      this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
-      // 
       // panel2
       // 
       this.panel2.Controls.Add(this.radLabel2);
@@ -95,6 +83,17 @@
       this.panel2.Name = "panel2";
       this.panel2.Size = new System.Drawing.Size(311, 60);
       this.panel2.TabIndex = 2;
+      // 
+      // radLabel2
+      // 
+      this.radLabel2.AutoSize = false;
+      this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.radLabel2.Location = new System.Drawing.Point(0, 37);
+      this.radLabel2.Name = "radLabel2";
+      this.radLabel2.Size = new System.Drawing.Size(311, 23);
+      this.radLabel2.TabIndex = 2;
+      this.radLabel2.Text = "Institut für Germanistik";
+      this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // pictureBox1
       // 
@@ -107,16 +106,18 @@
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;
       // 
-      // radLabel2
+      // radLabel1
       // 
-      this.radLabel2.AutoSize = false;
-      this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.radLabel2.Location = new System.Drawing.Point(0, 37);
-      this.radLabel2.Name = "radLabel2";
-      this.radLabel2.Size = new System.Drawing.Size(311, 23);
-      this.radLabel2.TabIndex = 2;
-      this.radLabel2.Text = "Institut für Germanistik";
-      this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
+      this.radLabel1.AutoSize = false;
+      this.radLabel1.Dock = System.Windows.Forms.DockStyle.Right;
+      this.radLabel1.Location = new System.Drawing.Point(396, 0);
+      this.radLabel1.Name = "radLabel1";
+      this.radLabel1.Padding = new System.Windows.Forms.Padding(0, 0, 64, 0);
+      this.radLabel1.Size = new System.Drawing.Size(404, 60);
+      this.radLabel1.TabIndex = 1;
+      this.radLabel1.Text = "<html>Projekt „Reden über Kunst - d14\"<br /><strong><span style=\"font-size: 14pt\"" +
+    ">www.reden-ueber-kunst.de</span></strong></html>";
+      this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
       // 
       // MainForm
       // 
@@ -133,10 +134,10 @@
       this.Text = "MainForm";
       ((System.ComponentModel.ISupportInitialize)(this.radPageView1)).EndInit();
       this.panel1.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
       this.panel2.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.radLabel2)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.radLabel1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
       this.ResumeLayout(false);
 

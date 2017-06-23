@@ -51,10 +51,11 @@ namespace d14tive.WindowsClient.Controls.Tagger
         new Label
         {
           Content = text,
-          Padding = new Thickness(0, 0, 3, 0),
+          Padding = new Thickness(0, 0, 9, 0),
           Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
           FontFamily = new FontFamily("Courier New"),
-          FontSize = 18
+          FontWeight = FontWeights.Bold,
+          FontSize = 24
         });
 
       Margin = new Thickness(0);

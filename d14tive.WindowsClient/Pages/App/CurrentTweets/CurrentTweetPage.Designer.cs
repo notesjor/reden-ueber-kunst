@@ -41,6 +41,10 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.centerControl1.SuspendLayout();
       this.SuspendLayout();
       // 
+      // lbl_info
+      // 
+      this.lbl_info.Size = new System.Drawing.Size(1200, 26);
+      // 
       // centerControl1
       // 
       this.centerControl1.BackColor = System.Drawing.Color.White;
@@ -57,12 +61,12 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.centerControl1.DropZone.Dock = System.Windows.Forms.DockStyle.Fill;
       this.centerControl1.DropZone.Location = new System.Drawing.Point(5, 5);
       this.centerControl1.DropZone.Name = "DropZone";
-      this.centerControl1.DropZone.Size = new System.Drawing.Size(790, 564);
+      this.centerControl1.DropZone.Size = new System.Drawing.Size(1190, 564);
       this.centerControl1.DropZone.TabIndex = 4;
       this.centerControl1.ForeColor = System.Drawing.Color.Black;
       this.centerControl1.Location = new System.Drawing.Point(0, 0);
       this.centerControl1.Name = "centerControl1";
-      this.centerControl1.Size = new System.Drawing.Size(800, 574);
+      this.centerControl1.Size = new System.Drawing.Size(1200, 574);
       this.centerControl1.TabIndex = 0;
       // 
       // tweetControl5
@@ -74,7 +78,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl5.Location = new System.Drawing.Point(0, 444);
       this.tweetControl5.Name = "tweetControl5";
       this.tweetControl5.Padding = new System.Windows.Forms.Padding(5);
-      this.tweetControl5.Size = new System.Drawing.Size(790, 111);
+      this.tweetControl5.Size = new System.Drawing.Size(1190, 111);
       this.tweetControl5.TabIndex = 4;
       // 
       // tweetControl4
@@ -86,7 +90,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl4.Location = new System.Drawing.Point(0, 333);
       this.tweetControl4.Name = "tweetControl4";
       this.tweetControl4.Padding = new System.Windows.Forms.Padding(5);
-      this.tweetControl4.Size = new System.Drawing.Size(790, 111);
+      this.tweetControl4.Size = new System.Drawing.Size(1190, 111);
       this.tweetControl4.TabIndex = 3;
       // 
       // tweetControl3
@@ -98,7 +102,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl3.Location = new System.Drawing.Point(0, 222);
       this.tweetControl3.Name = "tweetControl3";
       this.tweetControl3.Padding = new System.Windows.Forms.Padding(5);
-      this.tweetControl3.Size = new System.Drawing.Size(790, 111);
+      this.tweetControl3.Size = new System.Drawing.Size(1190, 111);
       this.tweetControl3.TabIndex = 2;
       // 
       // tweetControl2
@@ -110,7 +114,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl2.Location = new System.Drawing.Point(0, 111);
       this.tweetControl2.Name = "tweetControl2";
       this.tweetControl2.Padding = new System.Windows.Forms.Padding(5);
-      this.tweetControl2.Size = new System.Drawing.Size(790, 111);
+      this.tweetControl2.Size = new System.Drawing.Size(1190, 111);
       this.tweetControl2.TabIndex = 1;
       // 
       // tweetControl1
@@ -122,7 +126,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.tweetControl1.Location = new System.Drawing.Point(0, 0);
       this.tweetControl1.Name = "tweetControl1";
       this.tweetControl1.Padding = new System.Windows.Forms.Padding(5);
-      this.tweetControl1.Size = new System.Drawing.Size(790, 111);
+      this.tweetControl1.Size = new System.Drawing.Size(1190, 111);
       this.tweetControl1.TabIndex = 0;
       // 
       // CurrentTweetPage
@@ -132,6 +136,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       this.BackColor = System.Drawing.Color.White;
       this.Controls.Add(this.centerControl1);
       this.Name = "CurrentTweetPage";
+      this.Size = new System.Drawing.Size(1200, 600);
       this.Controls.SetChildIndex(this.lbl_info, 0);
       this.Controls.SetChildIndex(this.centerControl1, 0);
       ((System.ComponentModel.ISupportInitialize)(this.lbl_info)).EndInit();
