@@ -49,7 +49,6 @@ namespace d14tive.ExcelAnalytics
         if (type == "t")
         {
           CalculateInfluence(cluster, cec.CorpusDisplayname, "Absender (Id)");
-          CalculateCountry(cluster, cec.CorpusDisplayname);
         }
 
         Console.WriteLine("DONE");
@@ -175,45 +174,6 @@ namespace d14tive.ExcelAnalytics
       }
 
       File.WriteAllText(name + "_influence.csv", stb.ToString(), Encoding.UTF8);
-    }
-
-    private static void CalculateCountry(Selection[] clusters, string name)
-    {
-      var country = File.ReadAllLines("countries.csv", Encoding.UTF8).Select(x=>x.Split(';')).ToDictionary(x=>x[0], x=>x[1]);
-      var stb = new StringBuilder();
-      var cnt = new Dictionary<string, double>();
-
-      foreach (var cluster in clusters)
-      {
-        var block = cluster.CreateBlock<DocumentMetadataWeightBlock>();
-        block.Calculate();
-
-        Dictionary<string, double[]> meta;
-        try
-        {
-          meta = block.GetAggregatedRelativeSize("Ländercode");
-          if (meta == null || meta.Count < 1)
-            continue;
-        }
-        catch { continue; }
-
-        foreach (var x in meta)
-        {
-          var key = country.ContainsKey(x.Key.ToUpper()) ? country[x.Key.ToUpper()] : x.Key;
-
-          if (cnt.ContainsKey(key))
-            cnt[key] += x.Value[0];
-          else
-            cnt.Add(key, x.Value[0]);
-        }
-
-        foreach (var x in cnt)
-        {
-          stb.AppendLine($"{DateTime.ParseExact(cluster.Displayname, "yyyy-MM-dd", CultureInfo.InvariantCulture)}\t{x.Key}\t{x.Value}");
-        }
-      }
-
-      File.WriteAllText(name + "_country.csv", stb.ToString(), Encoding.UTF8);
     }
 
     private static string SelectCorpus()

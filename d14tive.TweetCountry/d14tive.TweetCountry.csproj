@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5E6957E3-D4A7-493F-B932-DDF17FB3ACE9}</ProjectGuid>
+    <ProjectGuid>{858BC131-DB53-47B2-9AD7-D1DE3116860E}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>d14tive.ExcelAnalytics</RootNamespace>
-    <AssemblyName>d14tive.ExcelAnalytics</AssemblyName>
+    <RootNamespace>d14tive.TweetCountry</RootNamespace>
+    <AssemblyName>d14tive.TweetCountry</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -45,13 +45,29 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scraper\TwitterCountryScraper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="countries.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\BitCutStudios.CorpusExplorer\BitCutStudios.CorpusExplorer.csproj">
+      <Project>{3226c218-0fb3-43a6-a67c-39cbac704ea3}</Project>
+      <Name>BitCutStudios.CorpusExplorer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Core\CorpusExplorer.Core.csproj">
+      <Project>{029fe5a6-9504-499a-9e0d-05754d44cbb1}</Project>
+      <Name>CorpusExplorer.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk.Extern.Json\CorpusExplorer.Sdk.Extern.Json.csproj">
+      <Project>{dd54a9b0-80a9-4dd6-83a6-65359086ce18}</Project>
+      <Name>CorpusExplorer.Sdk.Extern.Json</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Magisterarbeit\CorpusExplorerNext\CorpusExplorer\CorpusExplorer.Sdk\CorpusExplorer.Sdk.csproj">
-      <Project>{DC1B5A58-29DA-476D-89F8-E73A1DB11E52}</Project>
+      <Project>{dc1b5a58-29da-476d-89f8-e73a1db11e52}</Project>
       <Name>CorpusExplorer.Sdk</Name>
     </ProjectReference>
   </ItemGroup>
