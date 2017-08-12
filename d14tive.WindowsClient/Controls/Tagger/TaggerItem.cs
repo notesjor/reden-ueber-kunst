@@ -55,7 +55,7 @@ namespace d14tive.WindowsClient.Controls.Tagger
           Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255)),
           FontFamily = new FontFamily("Courier New"),
           FontWeight = FontWeights.Bold,
-          FontSize = 24
+          FontSize = 32
         });
 
       Margin = new Thickness(0);

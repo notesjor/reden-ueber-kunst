@@ -66,6 +66,7 @@
       // 
       // panel1
       // 
+      this.panel1.BackColor = System.Drawing.Color.White;
       this.panel1.Controls.Add(this.panel2);
       this.panel1.Controls.Add(this.radLabel1);
       this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -88,11 +89,12 @@
       // 
       this.radLabel2.AutoSize = false;
       this.radLabel2.Dock = System.Windows.Forms.DockStyle.Fill;
+      this.radLabel2.Font = new System.Drawing.Font("Segoe UI", 14.25F);
       this.radLabel2.Location = new System.Drawing.Point(0, 37);
       this.radLabel2.Name = "radLabel2";
       this.radLabel2.Size = new System.Drawing.Size(311, 23);
       this.radLabel2.TabIndex = 2;
-      this.radLabel2.Text = "Institut für Germanistik";
+      this.radLabel2.Text = "<html><span style=\"font-size: 12pt\">Institut für Germanistik</span></html>";
       this.radLabel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
       // 
       // pictureBox1
@@ -110,13 +112,15 @@
       // 
       this.radLabel1.AutoSize = false;
       this.radLabel1.Dock = System.Windows.Forms.DockStyle.Right;
+      this.radLabel1.Font = new System.Drawing.Font("Segoe UI", 14.25F);
       this.radLabel1.Location = new System.Drawing.Point(396, 0);
       this.radLabel1.Name = "radLabel1";
       this.radLabel1.Padding = new System.Windows.Forms.Padding(0, 0, 64, 0);
       this.radLabel1.Size = new System.Drawing.Size(404, 60);
       this.radLabel1.TabIndex = 1;
-      this.radLabel1.Text = "<html>Projekt „Reden über Kunst - d14\"<br /><strong><span style=\"font-size: 14pt\"" +
-    ">www.reden-ueber-kunst.de</span></strong></html>";
+      this.radLabel1.Text = "<html><span style=\"font-size: 12pt\">Projekt „Reden über Kunst - d14\"</span><br />" +
+    "<strong><span style=\"font-size: 18pt\">www.reden-ueber-kunst.de</span></strong></" +
+    "html>";
       this.radLabel1.TextAlignment = System.Drawing.ContentAlignment.MiddleRight;
       // 
       // MainForm

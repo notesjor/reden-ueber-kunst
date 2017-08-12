@@ -40,20 +40,61 @@ namespace d14tive.ExcelAnalytics
         Console.WriteLine("BASIC DONE");
 
         var cluster = GetDateClusters(cec);
-
+        
         if (type == "n")
         {
-          CalculateNewspapersAllIn(cluster);
+          //CalculateNewspapersAllIn(cluster);
           CalculateInfluence(cluster, cec.CorpusDisplayname, "Zeitung");
         }
         if (type == "t")
         {
           CalculateInfluence(cluster, cec.CorpusDisplayname, "Absender (Id)");
         }
+        
+        CalculateFrequency(cluster, cec.CorpusDisplayname);
 
         Console.WriteLine("DONE");
         Console.ReadLine();
       }
+    }
+
+    private static void CalculateFrequency(Selection[] cluster, string displayname)
+    {
+      var ofd = new OpenFileDialog
+      {
+        Filter = "1-Query per Line (*.txt)|*.txt",
+        CheckFileExists = true,
+        Multiselect = false
+      };
+      if (ofd.ShowDialog() != DialogResult.OK)
+        return;
+      var queries = File.ReadAllLines(ofd.FileName, Encoding.UTF8);
+
+      var stb = new StringBuilder();
+      
+      // HEADER
+      stb.Append("Date");
+      foreach (var q in queries)
+        stb.Append($"\t{q}");
+      stb.AppendLine();
+
+      // ROWS
+      foreach (var c in cluster)
+      {
+        var block = c.CreateBlock<Frequency1LayerBlock>();
+        block.Calculate();
+        var freq = block.FrequencyRelative;
+
+        stb.Append(c.Displayname);
+        foreach (var q in queries)
+        {
+          var f = freq.ContainsKey(q) ? freq[q] : 0;
+          stb.Append($"\t{f}");
+        }
+        stb.AppendLine();
+      }
+
+      File.WriteAllText($"{displayname}_freq.csv", stb.ToString());
     }
 
     private static void CalculateNewspapersAllIn(Selection[] clusterNews)
