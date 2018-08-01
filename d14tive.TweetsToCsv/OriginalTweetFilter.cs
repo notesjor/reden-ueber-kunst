@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using CorpusExplorer.Sdk.Model.Interface;
 
 namespace d14tive.TweetsToCsv
@@ -17,7 +15,7 @@ namespace d14tive.TweetsToCsv
       {
         if (!x.Value.ContainsKey("Referenz (Id)"))
           continue;
-        if ((ulong)x.Value["Referenz (Id)"] > 0)
+        if ((ulong) x.Value["Referenz (Id)"] > 0)
           continue;
         if (!x.Value.ContainsKey("Externe-URL (|-separiert)"))
           continue;
@@ -26,6 +24,7 @@ namespace d14tive.TweetsToCsv
 
         guids.Add(x.Key);
       }
+
       return guids;
     }
   }

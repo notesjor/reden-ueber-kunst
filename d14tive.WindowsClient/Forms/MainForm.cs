@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using d14tive.WindowsClient.Forms.Abstract;
 using d14tive.WindowsClient.Pages.Abstract;
 using d14tive.WindowsClient.Pages.App.CurrentTweets;
@@ -20,11 +17,11 @@ namespace d14tive.WindowsClient.Forms
 {
   public partial class MainForm : AbstractFillForm
   {
-    private List<RadPageViewPage> _pages = new List<RadPageViewPage>();
-    private Random _random;
-    private string _appDir;
+    private readonly string _appDir;
     private RadPageViewPage _defaultPage;
-    private bool _useDefaultPage = false;
+    private readonly List<RadPageViewPage> _pages = new List<RadPageViewPage>();
+    private readonly Random _random;
+    private bool _useDefaultPage;
 
     public MainForm()
     {
@@ -33,10 +30,12 @@ namespace d14tive.WindowsClient.Forms
       SuspendLayout();
 
       #region Fix PageView
+
       radPageView1.GetChildAt(0).GetChildAt(0).Visibility = ElementVisibility.Collapsed;
       radPageView1.GetChildAt(0).GetChildAt(1).Padding = new Padding(5);
       radPageView1.GetChildAt(0).GetChildAt(1).BorderThickness = new Padding(0);
-      ((RadPageViewContentAreaElement)radPageView1.GetChildAt(0).GetChildAt(1)).BorderWidth = 0;
+      ((RadPageViewContentAreaElement) radPageView1.GetChildAt(0).GetChildAt(1)).BorderWidth = 0;
+
       #endregion
 
       timer_pages.Interval = MyConfiguration.PageTimeout;
@@ -46,57 +45,6 @@ namespace d14tive.WindowsClient.Forms
       ResumeLayout(false);
 
       Load += MainForm_Load;
-    }
-
-    private void MainForm_Load(object sender, EventArgs e)
-    {
-      LoadPagesApp();
-      LoadPagesImg();
-
-      timer_pages_Tick(null, null);
-      timer_pages.Start();
-    }
-
-    private void LoadPagesApp()
-    {
-      if (File.Exists(@"tweets.txt"))
-        AddPage(new CurrentTweetPage(), true);
-    }
-
-    private void LoadPagesImg()
-    {
-      var imgDir = Path.Combine(_appDir, "img");
-      if (!Directory.Exists(imgDir))
-        return;
-
-      var dirs = Directory.GetDirectories(imgDir);
-      foreach (var dir in dirs)
-      {
-        var images = Directory.GetFiles(dir, "*.png").OrderBy(x => x).Select(Image.FromFile).ToArray();
-
-        if (images.Length > 0)
-          AddPage(new PageImg(GetLabel(Path.Combine(dir, "_.label"))) { Images = images, Timer = GetTimer(Path.Combine(dir, "_.timer")) });
-      }
-    }
-
-    private string GetLabel(string path)
-    {
-      return File.Exists(path) ? File.ReadAllText(path, Encoding.UTF8) : string.Empty;
-    }
-
-    private int GetTimer(string path)
-    {
-      if (!File.Exists(path))
-        return MyConfiguration.PageTimeout;
-
-      try
-      {
-        return int.Parse(File.ReadAllLines(path).First()) * 1000;
-      }
-      catch
-      {
-        return MyConfiguration.PageTimeout;
-      }
     }
 
     private void AddPage(AbstractPage page, bool defaultPage = false)
@@ -117,39 +65,59 @@ namespace d14tive.WindowsClient.Forms
       page.ResumeLayout(false);
     }
 
-    private void timer_pages_Tick(object sender, EventArgs e)
+    private string GetLabel(string path)
     {
+      return File.Exists(path) ? File.ReadAllText(path, Configuration.Encoding) : string.Empty;
+    }
+
+    private int GetTimer(string path)
+    {
+      if (!File.Exists(path))
+        return MyConfiguration.PageTimeout;
+
       try
       {
-        if (_pages.Count == 0)
-        {
-          _pages.AddRange(radPageView1.Pages);
-          if (_defaultPage != null)
-            _pages.Remove(_defaultPage);
-        }
-
-        _useDefaultPage = !_useDefaultPage;
-        if (_defaultPage != null && _useDefaultPage)
-        {
-          SetPage(_defaultPage);
-          return;
-        }        
-
-        if (_pages.Count == 0)
-          timer_pages.Stop();
-
-        var next = _random.Next(0, _pages.Count);
-        if (next < 0 || next >= _pages.Count)
-          return;
-
-        SetPage(_pages[next]);
-        _pages.RemoveAt(next);
+        return int.Parse(File.ReadAllLines(path).First()) * 1000;
       }
-      catch (Exception ex)
+      catch
       {
-        timer_pages.Start();
-        // ignore
+        return MyConfiguration.PageTimeout;
       }
+    }
+
+    private void LoadPagesApp()
+    {
+      if (File.Exists(@"tweets.txt"))
+        AddPage(new CurrentTweetPage(), true);
+    }
+
+    private void LoadPagesImg()
+    {
+      var imgDir = Path.Combine(_appDir, "img");
+      if (!Directory.Exists(imgDir))
+        return;
+
+      var dirs = Directory.GetDirectories(imgDir);
+      foreach (var dir in dirs)
+      {
+        var images = Directory.GetFiles(dir, "*.png").OrderBy(x => x).Select(Image.FromFile).ToArray();
+
+        if (images.Length > 0)
+          AddPage(new PageImg(GetLabel(Path.Combine(dir, "_.label")))
+          {
+            Images = images,
+            Timer = GetTimer(Path.Combine(dir, "_.timer"))
+          });
+      }
+    }
+
+    private void MainForm_Load(object sender, EventArgs e)
+    {
+      LoadPagesApp();
+      LoadPagesImg();
+
+      timer_pages_Tick(null, null);
+      timer_pages.Start();
     }
 
     private void SetPage(RadPageViewPage page)
@@ -169,6 +137,41 @@ namespace d14tive.WindowsClient.Forms
       // ReSharper disable once CanBeReplacedWithTryCastAndCheckForNull
       timer_pages.Interval = (aPage as PageImg)?.Images.Length * aPage.Timer ?? aPage.Timer;
       timer_pages.Start();
+    }
+
+    private void timer_pages_Tick(object sender, EventArgs e)
+    {
+      try
+      {
+        if (_pages.Count == 0)
+        {
+          _pages.AddRange(radPageView1.Pages);
+          if (_defaultPage != null)
+            _pages.Remove(_defaultPage);
+        }
+
+        _useDefaultPage = !_useDefaultPage;
+        if (_defaultPage != null && _useDefaultPage)
+        {
+          SetPage(_defaultPage);
+          return;
+        }
+
+        if (_pages.Count == 0)
+          timer_pages.Stop();
+
+        var next = _random.Next(0, _pages.Count);
+        if (next < 0 || next >= _pages.Count)
+          return;
+
+        SetPage(_pages[next]);
+        _pages.RemoveAt(next);
+      }
+      catch (Exception ex)
+      {
+        timer_pages.Start();
+        // ignore
+      }
     }
   }
 }

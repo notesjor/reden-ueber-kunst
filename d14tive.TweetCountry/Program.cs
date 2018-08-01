@@ -3,18 +3,29 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using CorpusExplorer.Sdk.Extern.Json.TwitterStream;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Helper;
+using d14tive.TweetCountry.Scraper;
 
 namespace d14tive.TweetCountry
 {
-  class Program
+  internal class Program
   {
+    private static string ConvertCountryCode(ref Dictionary<string, string> countries, object o)
+    {
+      return o == null ? "" : (countries.ContainsKey(o.ToString()) ? countries[o.ToString()] : "");
+    }
+
+    private static Dictionary<string, string> GetCountries()
+    {
+      var lines = File.ReadAllLines("countries.csv");
+      return lines.Select(line => line.Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries))
+        .Where(items => items.Length == 2).ToDictionary(items => items[0], items => items[1]);
+    }
+
     [STAThread]
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
       var fbd = new FolderBrowserDialog();
       if (fbd.ShowDialog() != DialogResult.OK)
@@ -30,7 +41,8 @@ namespace d14tive.TweetCountry
       Console.WriteLine($"{scraper.Output.Count} tweets found");
       var countries = GetCountries();
       var hash = SHA256.Create();
-      var res = new Dictionary<string, string>(); // Key = Base64-HASH | 0 = Geo, 1 = Datum, 2 = Ländercode2, 3 = Ländercode3
+      var
+        res = new Dictionary<string, string>(); // Key = Base64-HASH | 0 = Geo, 1 = Datum, 2 = Ländercode2, 3 = Ländercode3
 
       while (scraper.Output.Count > 0)
       {
@@ -41,7 +53,7 @@ namespace d14tive.TweetCountry
         if (!tweet.ContainsKey("Text") || tweet["Text"] == null)
           continue;
 
-        var key = Convert.ToBase64String(hash.ComputeHash(Encoding.UTF8.GetBytes(tweet["Text"].ToString())));
+        var key = Convert.ToBase64String(hash.ComputeHash(Configuration.Encoding.GetBytes(tweet["Text"].ToString())));
         if (res.ContainsKey(key))
           continue;
 
@@ -54,7 +66,7 @@ namespace d14tive.TweetCountry
         string l1 = "", l2 = "";
         if (tweet.ContainsKey("Geo") && tweet["Geo"].ToString().Contains(";"))
         {
-          var split = tweet["Geo"].ToString().Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
+          var split = tweet["Geo"].ToString().Split(new[] {";"}, StringSplitOptions.RemoveEmptyEntries);
           if (split.Length == 2)
           {
             l1 = split[0];
@@ -62,7 +74,8 @@ namespace d14tive.TweetCountry
           }
         }
 
-        res.Add(key, $"{athen}\t{kassel}\t{both}\t{documenta}\t{l1}\t{l2}\t{tweet["Datum"]}\t{tweet["Ländercode"]}\t{ConvertCountryCode(ref countries, tweet["Ländercode"])}");
+        res.Add(key,
+          $"{athen}\t{kassel}\t{both}\t{documenta}\t{l1}\t{l2}\t{tweet["Datum"]}\t{tweet["Ländercode"]}\t{ConvertCountryCode(ref countries, tweet["Ländercode"])}");
       }
 
       Console.WriteLine($"{res.Count} unique tweets found");
@@ -71,17 +84,6 @@ namespace d14tive.TweetCountry
 
       Console.WriteLine("!END!");
       Console.ReadLine();
-    }
-
-    private static string ConvertCountryCode(ref Dictionary<string, string> countries, object o)
-    {
-      return o == null ? "" : (countries.ContainsKey(o.ToString()) ? countries[o.ToString()] : "");
-    }
-
-    private static Dictionary<string, string> GetCountries()
-    {
-      var lines = File.ReadAllLines("countries.csv");
-      return lines.Select(line => line.Split(new[] { ";" }, StringSplitOptions.RemoveEmptyEntries)).Where(items => items.Length == 2).ToDictionary(items => items[0], items => items[1]);
     }
   }
 }

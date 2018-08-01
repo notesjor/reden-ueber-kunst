@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using d14tive.WindowsClient.Controls.Abstract;
 using d14tive.WindowsClient.Controls.Helper;
@@ -31,10 +25,7 @@ namespace d14tive.WindowsClient.Controls
       var width = size.Width - 1200;
       var height = size.Height - 600;
 
-      if (width > 1)
-      {
-        panel_left.Width = panel_right.Width = width / 2;
-      }
+      if (width > 1) panel_left.Width = panel_right.Width = width / 2;
       if (height > 1)
       {
         panel_up.Height = height / 2;

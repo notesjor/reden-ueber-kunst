@@ -4,139 +4,19 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CorpusExplorer.Sdk.Blocks;
 using CorpusExplorer.Sdk.Blocks.SelectionCluster.Generator;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using CorpusExplorer.Sdk.Model;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using CorpusExplorer.Sdk.Model.Extension;
 
 namespace d14tive.ExcelAnalytics
 {
-  class Program
+  internal class Program
   {
-    private static int _zeitungenMax = 0;
-
-    [STAThread]
-    static void Main(string[] args)
-    {
-      Console.Write("How many corpora?: ");
-      var max = int.Parse(Console.ReadLine());
-
-      for (int i = 0; i < max; i++)
-      {
-        Console.Write("Corpus type (t=tweet / n=news): ");
-        var type = Console.ReadLine();
-
-        Console.Write("Select corpus: ");
-        var corpus = SelectCorpus();
-        Console.Write(corpus);
-
-        var cec = CorpusAdapterWriteDirect.Create(corpus);
-        Console.WriteLine("...ok!");
-
-        CalculateBasicStatistics(cec);
-        Console.WriteLine("BASIC DONE");
-
-        var cluster = GetDateClusters(cec);
-        
-        if (type == "n")
-        {
-          //CalculateNewspapersAllIn(cluster);
-          CalculateInfluence(cluster, cec.CorpusDisplayname, "Zeitung");
-        }
-        if (type == "t")
-        {
-          CalculateInfluence(cluster, cec.CorpusDisplayname, "Absender (Id)");
-        }
-        
-        CalculateFrequency(cluster, cec.CorpusDisplayname);
-
-        Console.WriteLine("DONE");
-        Console.ReadLine();
-      }
-    }
-
-    private static void CalculateFrequency(Selection[] cluster, string displayname)
-    {
-      var ofd = new OpenFileDialog
-      {
-        Filter = "1-Query per Line (*.txt)|*.txt",
-        CheckFileExists = true,
-        Multiselect = false
-      };
-      if (ofd.ShowDialog() != DialogResult.OK)
-        return;
-      var queries = File.ReadAllLines(ofd.FileName, Encoding.UTF8);
-
-      var stb = new StringBuilder();
-      
-      // HEADER
-      stb.Append("Date");
-      foreach (var q in queries)
-        stb.Append($"\t{q}");
-      stb.AppendLine();
-
-      // ROWS
-      foreach (var c in cluster)
-      {
-        var block = c.CreateBlock<Frequency1LayerBlock>();
-        block.Calculate();
-        var freq = block.FrequencyRelative;
-
-        stb.Append(c.Displayname);
-        foreach (var q in queries)
-        {
-          var f = freq.ContainsKey(q) ? freq[q] : 0;
-          stb.Append($"\t{f}");
-        }
-        stb.AppendLine();
-      }
-
-      File.WriteAllText($"{displayname}_freq.csv", stb.ToString());
-    }
-
-    private static void CalculateNewspapersAllIn(Selection[] clusterNews)
-    {
-      var outputAt = new Queue<double>();
-      outputAt.Enqueue(0.80);
-      outputAt.Enqueue(0.90);
-      outputAt.Enqueue(0.95);
-      outputAt.Enqueue(0.99);
-      outputAt.Enqueue(1.00);
-
-      var hash = new HashSet<string>();
-      var outA = outputAt.Dequeue();
-      var outC = outA * _zeitungenMax;
-      foreach (var c in clusterNews)
-      {
-        var meta = c.DocumentMetadata;
-        foreach (var pair in meta)
-          if (pair.Value.ContainsKey("Zeitung"))
-            hash.Add(pair.Value["Zeitung"]?.ToString());
-
-        if (hash.Count < outC)
-          continue;
-
-        Console.WriteLine($"{((int)(outA * 100.0)):D3}% Zeitungen erreicht am {c.Displayname}");
-        if (outputAt.Count == 0)
-          break;
-
-        outA = outputAt.Dequeue();
-        outC = outA * _zeitungenMax;
-      }
-    }
-
-    private static Selection[] GetDateClusters(CorpusAdapterWriteDirect corpus)
-    {
-      var select = corpus.ToSelection();
-      var blockCluster = select.CreateBlock<SelectionClusterBlock>();
-      blockCluster.ClusterGenerator = new SelectionClusterGeneratorByDateTimeYearMonthDayOnlyValue();
-      blockCluster.MetadataKey = "Datum";
-      blockCluster.Calculate();
-      return blockCluster.GetSelectionClusters().OrderBy(x => x.Displayname).ToArray();
-    }
+    private static int _zeitungenMax;
 
     private static void CalculateBasicStatistics(CorpusAdapterWriteDirect corpus)
     {
@@ -161,7 +41,7 @@ namespace d14tive.ExcelAnalytics
           autoren.Add(doc.Value["Absender (Id)"]?.ToString());
         if (doc.Value.ContainsKey("Datum") && doc.Value["Datum"] is DateTime)
         {
-          var date = (DateTime)doc.Value["Datum"];
+          var date = (DateTime) doc.Value["Datum"];
           if (date == DateTime.MinValue || date == DateTime.MaxValue)
             continue;
           if (date < dtMin)
@@ -181,6 +61,46 @@ namespace d14tive.ExcelAnalytics
       File.WriteAllText(corpus.CorpusDisplayname + "_basicStat.csv", stb.ToString());
     }
 
+    private static void CalculateFrequency(Selection[] cluster, string displayname)
+    {
+      var ofd = new OpenFileDialog
+      {
+        Filter = "1-Query per Line (*.txt)|*.txt",
+        CheckFileExists = true,
+        Multiselect = false
+      };
+      if (ofd.ShowDialog() != DialogResult.OK)
+        return;
+      var queries = File.ReadAllLines(ofd.FileName, Configuration.Encoding);
+
+      var stb = new StringBuilder();
+
+      // HEADER
+      stb.Append("Date");
+      foreach (var q in queries)
+        stb.Append($"\t{q}");
+      stb.AppendLine();
+
+      // ROWS
+      foreach (var c in cluster)
+      {
+        var block = c.CreateBlock<Frequency1LayerBlock>();
+        block.Calculate();
+        var freq = block.FrequencyRelative;
+
+        stb.Append(c.Displayname);
+        foreach (var q in queries)
+        {
+          var f = freq.ContainsKey(q) ? freq[q] : 0;
+          stb.Append($"\t{f}");
+        }
+
+        stb.AppendLine();
+      }
+
+      File.WriteAllText($"{displayname}_freq.csv", stb.ToString());
+    }
+
     private static void CalculateInfluence(Selection[] clusters, string name, string property)
     {
       var stb = new StringBuilder();
@@ -198,23 +118,97 @@ namespace d14tive.ExcelAnalytics
           if (meta == null || meta.Count < 1)
             continue;
         }
-        catch { continue; }
+        catch
+        {
+          continue;
+        }
 
         foreach (var x in meta)
-        {
           if (cnt.ContainsKey(x.Key))
             cnt[x.Key] += x.Value[0];
           else
             cnt.Add(x.Key, x.Value[0]);
-        }
 
         foreach (var x in cnt)
-        {
-          stb.AppendLine($"{DateTime.ParseExact(cluster.Displayname, "yyyy-MM-dd", CultureInfo.InvariantCulture)}\t{x.Key}\t{x.Value}");
-        }
+          stb.AppendLine(
+            $"{DateTime.ParseExact(cluster.Displayname, "yyyy-MM-dd", CultureInfo.InvariantCulture)}\t{x.Key}\t{x.Value}");
       }
 
-      File.WriteAllText(name + "_influence.csv", stb.ToString(), Encoding.UTF8);
+      File.WriteAllText(name + "_influence.csv", stb.ToString(), Configuration.Encoding);
+    }
+
+    private static void CalculateNewspapersAllIn(Selection[] clusterNews)
+    {
+      var outputAt = new Queue<double>();
+      outputAt.Enqueue(0.80);
+      outputAt.Enqueue(0.90);
+      outputAt.Enqueue(0.95);
+      outputAt.Enqueue(0.99);
+      outputAt.Enqueue(1.00);
+
+      var hash = new HashSet<string>();
+      var outA = outputAt.Dequeue();
+      var outC = outA * _zeitungenMax;
+      foreach (var c in clusterNews)
+      {
+        var meta = c.DocumentMetadata;
+        foreach (var pair in meta)
+          if (pair.Value.ContainsKey("Zeitung"))
+            hash.Add(pair.Value["Zeitung"]?.ToString());
+
+        if (hash.Count < outC)
+          continue;
+
+        Console.WriteLine($"{(int) (outA * 100.0):D3}% Zeitungen erreicht am {c.Displayname}");
+        if (outputAt.Count == 0)
+          break;
+
+        outA = outputAt.Dequeue();
+        outC = outA * _zeitungenMax;
+      }
+    }
+
+    private static Selection[] GetDateClusters(CorpusAdapterWriteDirect corpus)
+    {
+      var select = corpus.ToSelection();
+      var blockCluster = select.CreateBlock<SelectionClusterBlock>();
+      blockCluster.ClusterGenerator = new SelectionClusterGeneratorDateTimeYearMonthDayOnlyValue();
+      blockCluster.MetadataKey = "Datum";
+      blockCluster.Calculate();
+      return blockCluster.GetSelectionClusters().OrderBy(x => x.Displayname).ToArray();
+    }
+
+    [STAThread]
+    private static void Main(string[] args)
+    {
+      Console.Write("How many corpora?: ");
+      var max = int.Parse(Console.ReadLine());
+
+      for (int i = 0; i < max; i++)
+      {
+        Console.Write("Corpus type (t=tweet / n=news): ");
+        var type = Console.ReadLine();
+
+        Console.Write("Select corpus: ");
+        var corpus = SelectCorpus();
+        Console.Write(corpus);
+
+        var cec = CorpusAdapterWriteDirect.Create(corpus);
+        Console.WriteLine("...ok!");
+
+        CalculateBasicStatistics(cec);
+        Console.WriteLine("BASIC DONE");
+
+        var cluster = GetDateClusters(cec);
+
+        if (type == "n") CalculateInfluence(cluster, cec.CorpusDisplayname, "Zeitung");
+        if (type == "t") CalculateInfluence(cluster, cec.CorpusDisplayname, "Absender (Id)");
+
+        CalculateFrequency(cluster, cec.CorpusDisplayname);
+
+        Console.WriteLine("DONE");
+        Console.ReadLine();
+      }
     }
 
     private static string SelectCorpus()

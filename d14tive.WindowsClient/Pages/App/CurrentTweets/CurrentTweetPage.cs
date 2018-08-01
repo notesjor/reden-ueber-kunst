@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
 using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using CorpusExplorer.Sdk.Model.Adapter.Corpus;
+using CorpusExplorer.Sdk.Ecosystem.Model;
 using d14tive.WindowsClient.Controls;
 using d14tive.WindowsClient.Pages.Abstract;
 using d14tive.WindowsClient.Pages.App.CurrentTweets.Model;
@@ -18,11 +11,11 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
 {
   public partial class CurrentTweetPage : AbstractPage
   {
+    private readonly TweetControl[] _controls;
+    private readonly List<TweetGroup> _groups = new List<TweetGroup>();
     private bool _init;
-    private List<TweetGroup> _groups = new List<TweetGroup>();
-    private List<TweetGroup> _stack;
     private Random _rnd;
-    private TweetControl[] _controls;
+    private List<TweetGroup> _stack;
 
     public CurrentTweetPage()
     {
@@ -30,7 +23,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       Timer = 15000;
       lbl_info.Text = "Tweets zur #documenta14";
 
-      _controls = new []
+      _controls = new[]
       {
         tweetControl1, tweetControl2, tweetControl3, tweetControl4, tweetControl5
       };
@@ -48,7 +41,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
       if (_init)
         return;
 
-      var lines = File.ReadAllLines("tweets.txt", Encoding.UTF8);
+      var lines = File.ReadAllLines("tweets.txt", Configuration.Encoding);
       TweetGroup group = null;
       foreach (var line in lines)
       {
@@ -56,7 +49,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
         {
           if (string.IsNullOrWhiteSpace(line))
             continue;
-          group = new TweetGroup { Topic = lbl_info.Text };
+          group = new TweetGroup {Topic = lbl_info.Text};
         }
 
         if (string.IsNullOrWhiteSpace(line))
@@ -75,7 +68,7 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
 
       _stack = new List<TweetGroup>(_groups);
       _rnd = MyConfiguration.Random;
-      
+
       _init = true;
     }
 
@@ -92,7 +85,6 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
 
       var twt = new List<TweetEntry>(grp.Entries);
       foreach (var c in _controls)
-      {
         try
         {
           var twidx = _rnd.Next(0, twt.Count);
@@ -107,7 +99,6 @@ namespace d14tive.WindowsClient.Pages.App.CurrentTweets
         {
           // ignore
         }
-      }
     }
   }
 }

@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using d14tive.WindowsClient.Pages.Abstract;
 
 namespace d14tive.WindowsClient.Pages.Img
@@ -23,9 +16,14 @@ namespace d14tive.WindowsClient.Pages.Img
 
     public Image[] Images { get; set; }
 
+    public override void HidePage()
+    {
+      timer_images.Stop();
+    }
+
     public override void ShowPage(Size size)
     {
-      _index = 0;        
+      _index = 0;
       pictureBox1.Image = Images[_index];
       if (Images.Length == 1)
         return;
@@ -33,8 +31,6 @@ namespace d14tive.WindowsClient.Pages.Img
       timer_images.Interval = Timer;
       timer_images.Start();
     }
-
-    public override void HidePage() { timer_images.Stop(); }
 
     private void timer_images_Tick(object sender, EventArgs e)
     {
@@ -44,6 +40,7 @@ namespace d14tive.WindowsClient.Pages.Img
         timer_images.Stop();
         return;
       }
+
       pictureBox1.Image = Images[_index];
     }
   }

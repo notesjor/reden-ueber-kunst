@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using d14tive.WindowsClient.Controls.Abstract;
 
 namespace d14tive.WindowsClient.Controls
@@ -10,7 +9,7 @@ namespace d14tive.WindowsClient.Controls
     {
       InitializeComponent();
     }
-    
+
     public IEnumerable<IEnumerable<string>> Content
     {
       set => wpfTagger1.Text = value;

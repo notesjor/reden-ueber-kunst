@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CorpusExplorer.Core.Exporter;
 using CorpusExplorer.Sdk.Model.Adapter.Corpus;
@@ -10,12 +6,12 @@ using CorpusExplorer.Sdk.Model.Extension;
 
 namespace d14tive.TweetsToCsv
 {
-  class Program
+  internal class Program
   {
     [STAThread]
-    static void Main(string[] args)
+    private static void Main(string[] args)
     {
-      var ofd = new OpenFileDialog { Filter = "CEC6-Korpus|*.cec6", Multiselect = false, CheckFileExists = true };
+      var ofd = new OpenFileDialog {Filter = "CEC6-Korpus|*.cec6", Multiselect = false, CheckFileExists = true};
       Console.Write("Select corpus file: ");
       ofd.ShowDialog();
 

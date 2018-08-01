@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using CorpusExplorer.Core.Exporter;
 using CorpusExplorer.Sdk.Helper;
@@ -12,13 +9,14 @@ using CorpusExplorer.Sdk.Model.Adapter.Corpus;
 using CorpusExplorer.Sdk.Model.Extension;
 using d14tive.TweetsToCsv;
 using Telerik.WinControls;
+using Telerik.WinControls.UI;
 
 namespace d14tive.TweetSelector
 {
-  public partial class RadForm1 : Telerik.WinControls.UI.RadForm
+  public partial class RadForm1 : RadForm
   {
-    private string _filter = "CEC6-Korpus (*.cec6)|*.cec6";
     private CorpusAdapterWriteDirect _corpus;
+    private readonly string _filter = "CEC6-Korpus (*.cec6)|*.cec6";
 
     public RadForm1()
     {
@@ -26,7 +24,10 @@ namespace d14tive.TweetSelector
       {
         ThemeResolutionService.ApplicationThemeName = "Material";
       }
-      catch { }
+      catch
+      {
+      }
+
       InitializeComponent();
     }
 
@@ -38,6 +39,21 @@ namespace d14tive.TweetSelector
 
       _corpus = CorpusAdapterWriteDirect.Create(ofd.FileName);
       CorpusToGrid();
+    }
+
+    private void btn_save_Click(object sender, EventArgs e)
+    {
+      var list = (from row in radGridView1.Rows
+        where (bool) row.Cells["?"].Value
+        select Guid.Parse((string) row.Cells["GUID"].Value)).ToList();
+      if (list.Count == 0)
+        return;
+
+      var selection = _corpus.ToSelection().Create(list, "output");
+      var exporter = new ExporterCec6();
+      exporter.Export(selection, @"tweets.cec6");
+
+      Close();
     }
 
     private void CorpusToGrid()
@@ -77,22 +93,7 @@ namespace d14tive.TweetSelector
         if (column.Name != "?")
           column.ReadOnly = true;
 
-      radGridView1.BestFitColumns(Telerik.WinControls.UI.BestFitColumnMode.AllCells);
-    }
-
-    private void btn_save_Click(object sender, EventArgs e)
-    {
-      var list = (from row in radGridView1.Rows
-                  where (bool) row.Cells["?"].Value
-                  select Guid.Parse((string) row.Cells["GUID"].Value)).ToList();
-      if (list.Count == 0)
-        return;
-
-      var selection = _corpus.ToSelection().Create(list, "output");
-      var exporter = new ExporterCec6();
-      exporter.Export(selection, @"tweets.cec6");
-
-      Close();
+      radGridView1.BestFitColumns(BestFitColumnMode.AllCells);
     }
   }
 }

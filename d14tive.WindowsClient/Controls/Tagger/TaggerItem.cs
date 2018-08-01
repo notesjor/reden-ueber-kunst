@@ -14,11 +14,6 @@ namespace d14tive.WindowsClient.Controls.Tagger
   /// </summary>
   public class TaggerItem : WrapPanel
   {
-    /// <summary>
-    ///   The <see cref="TaggerItem._call" />
-    /// </summary>
-    private readonly SelectedTaggerItemChange _call;
-
     private readonly Dictionary<Color, StackPanel> _colorAssoziation = new Dictionary<Color, StackPanel>();
 
     /// <summary>
@@ -97,8 +92,8 @@ namespace d14tive.WindowsClient.Controls.Tagger
       if (_colorAssoziation.ContainsKey(color))
         return;
 
-      var rect = new StackPanel { Height = 13, Width = Width };
-      var boar = new Border { BorderThickness = new Thickness(0, 2, 0, 0), BorderBrush = new SolidColorBrush(color) };
+      var rect = new StackPanel {Height = 13, Width = Width};
+      var boar = new Border {BorderThickness = new Thickness(0, 2, 0, 0), BorderBrush = new SolidColorBrush(color)};
       rect.Children.Add(boar);
       rect.Children.Add(
         new TextBlock
